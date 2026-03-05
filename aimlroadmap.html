@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AI/ML Engineer Masterstack</title>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&display=swap"
+		rel="stylesheet">
+	<style>
+		:root {
+			--bg-main: #080808;
+			--border-color: #1a1a1a;
+			--text-main: #e0e0e0;
+			--text-dim: #666;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			background: var(--bg-main);
+			font-family: 'Courier New', 'Lucida Console', monospace;
+			color: var(--text-main);
+			overflow-x: hidden;
+		}
+
+		::-webkit-scrollbar {
+			width: 4px;
+		}
+
+		::-webkit-scrollbar-track {
+			background: #111;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: #333;
+			border-radius: 2px;
+		}
+
+		/* Animations */
+		.blink {
+			animation: blink 1.2s step-end infinite;
+		}
+
+		@keyframes blink {
+			50% {
+				opacity: 0;
+			}
+		}
+
+		.scan {
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+			background: linear-gradient(to bottom, transparent 0%, rgba(0, 255, 209, 0.03) 50%, transparent 100%);
+			animation: scan 4s linear infinite;
+			background-size: 100% 200%;
+		}
+
+		@keyframes scan {
+			0% {
+				background-position: 0 -100%;
+			}
+
+			100% {
+				background-position: 0 100%;
+			}
+		}
+
+		.fade-in {
+			animation: fadeIn 0.3s ease;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(8px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* Header & Nav */
+		header {
+			border-bottom: 1px solid var(--border-color);
+			padding: 32px 32px 24px;
+			background: linear-gradient(to bottom, #0d0d0d, #080808);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.tier-nav {
+			margin-top: 20px;
+			display: flex;
+			gap: 8px;
+			flex-wrap: wrap;
+		}
+
+		.tier-btn {
+			background: transparent;
+			border: 1px solid;
+			padding: 6px 14px;
+			font-size: 11px;
+			font-family: 'Courier New', monospace;
+			letter-spacing: 2px;
+			cursor: pointer;
+			transition: all 0.2s;
+			opacity: 0.5;
+		}
+
+		.tier-btn.active {
+			opacity: 1;
+			font-weight: bold;
+		}
+
+		.tier-btn:hover {
+			opacity: 1;
+			transform: translateX(4px);
+		}
+
+		/* Layout */
+		.container {
+			display: flex;
+			min-height: calc(100vh - 180px);
+		}
+
+		#sidebar {
+			width: 260px;
+			flex-shrink: 0;
+			border-right: 1px solid var(--border-color);
+			padding: 24px 0;
+			transition: background 0.3s ease;
+		}
+
+		.sidebar-header {
+			padding: 0 20px 16px;
+			border-bottom: 1px solid var(--border-color);
+		}
+
+		.skill-item {
+			padding: 10px 20px;
+			cursor: pointer;
+			transition: all 0.15s;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			border-left: 2px solid transparent;
+		}
+
+		#detail-panel {
+			flex: 1;
+			padding: 32px;
+			background: #080808;
+		}
+
+		.skill-card {
+			border: 1px solid var(--border-color);
+			padding: 16px;
+			background: #0d0d0d;
+			cursor: pointer;
+			transition: border-color 0.2s;
+		}
+
+		.skill-card:hover {
+			border-color: var(--active-color) !important;
+		}
+
+		.resource-item {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			padding: 12px 16px;
+			background: #0d0d0d;
+			border: 1px solid var(--border-color);
+			margin-bottom: 8px;
+		}
+
+		button:disabled {
+			opacity: 0.2;
+			cursor: default;
+		}
+
+		@media (max-width: 768px) {
+			.container {
+				flex-direction: column;
+			}
+
+			#sidebar {
+				width: 100%;
+				border-right: none;
+				border-bottom: 1px solid var(--border-color);
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<header>
+		<div class="scan"></div>
+		<div style="font-size: 11px; color: #555; letter-spacing: 4px; margin-bottom: 8px;">
+			SYS:LOADED // SELF-TAUGHT AI/ML ENGINEER STACK v2.0 <span class="blink">█</span>
+		</div>
+		<div id="main-title"
+			style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 5vw, 56px); letter-spacing: 2px; line-height: 1; color: #fff; margin-bottom: 8px;">
+		</div>
+		<div id="main-subtitle" style="color: #666; font-size: 13px; letter-spacing: 2px;"></div>
+		<div class="tier-nav" id="tier-nav"></div>
+	</header>
+
+	<div class="container">
+		<div id="sidebar">
+			<div class="sidebar-header">
+				<div id="tier-label" style="font-size: 10px; letter-spacing: 3px; margin-bottom: 4px;">
+				</div>
+				<div id="tier-title"
+					style="font-size: 16px; font-weight: bold; color: #fff; line-height: 1.3;">
+				</div>
+				<div id="tier-urgency"
+					style="font-size: 11px; color: #666; margin-top: 6px; line-height: 1.4;"></div>
+			</div>
+			<div id="skill-list" style="padding: 16px 0;"></div>
+		</div>
+
+		<div id="detail-panel"></div>
+	</div>
+
+	<script>
+		const data = {
+			intro: "The Self-Taught AI/ML Engineer Masterstack",
+			subtitle: "No degree. No gatekeepers. Maximum leverage.",
+			tiers: [
+				{
+					id: "foundation", label: "TIER 0", title: "Mathematical & CS Foundation", color: "#00FFD1", bg: "#001a14", urgency: "Non-negotiable bedrock", skills: [
+						{name: "Linear Algebra", why: "The language of tensors, embeddings, neural networks, and transformers.", tools: ["3Blue1Brown Essence of LA", "Gilbert Strang MIT OCW", "Fast.ai Numerical LA"], depth: 5},
+						{name: "Calculus & Multivariable", why: "Gradient descent, backpropagation, optimization — all live here.", tools: ["Khan Academy", "Paul's Online Notes", "MIT 18.01 OCW"], depth: 5},
+						{name: "Probability & Statistics", why: "Bayesian thinking, distributions, hypothesis testing. ML is probabilistic.", tools: ["StatQuest", "Blitzstein Harvard Stats110", "Think Stats"], depth: 5},
+						{name: "Information Theory", why: "Cross-entropy loss, KL divergence — found in every modern LLM paper.", tools: ["David MacKay Textbook", "Visual Information Theory"], depth: 4},
+						{name: "Algorithms & Data Structures", why: "ML systems at scale demand efficient code. DSA separates hobbyists from engineers.", tools: ["Neetcode.io", "CLRS textbook", "AlgoExpert"], depth: 4}
+					]
+				},
+				{
+					id: "programming", label: "TIER 1", title: "Programming Mastery", color: "#FF6B35", bg: "#1a0c08", urgency: "Your primary weapon", skills: [
+						{name: "Python (Expert Level)", why: "The universal language of AI. Master generators, decorators, and async.", tools: ["Fluent Python", "Real Python", "Raymond Hettinger talks"], depth: 5},
+						{name: "NumPy & Vectorization", why: "Broadcasting and vectorization are foundational performance skills.", tools: ["NumPy docs", "Nicolas Rougier tutorial"], depth: 5},
+						{name: "SQL & Data Engineering", why: "Real ML work is 80% data wrangling. SQL fluency is mandatory.", tools: ["Mode Analytics", "dbt", "Polars", "DuckDB"], depth: 4},
+						{name: "Bash / Linux / CLI", why: "All serious ML infra runs on Linux. Remote GPU management happens here.", tools: ["The Missing Semester (MIT)", "explainshell.com"], depth: 4},
+						{name: "Git & Version Control", why: "Collaboration and reproducibility start here. Know rebasing deeply.", tools: ["Pro Git", "Oh Shit Git"], depth: 4}
+					]
+				},
+				{
+					id: "ml_core", label: "TIER 2", title: "Classical ML & Core Frameworks", color: "#A78BFA", bg: "#0d0a1a", urgency: "Table stakes for any AI role", skills: [
+						{name: "Classical ML Algorithms", why: "Linear/logistic regression, SVMs, trees, and ensembles.", tools: ["Scikit-learn docs", "Hands-On ML (Aurélien Géron)"], depth: 5},
+						{name: "PyTorch (Deep Mastery)", why: "The dominant research framework. Autograd, DDP, and hooks.", tools: ["PyTorch docs", "Karpathy's neural net videos"], depth: 5},
+						{name: "Deep Learning Fundamentals", why: "MLPs, CNNs, RNNs, and attention mechanisms.", tools: ["Deep Learning (Goodfellow)", "fast.ai Practical DL"], depth: 5},
+						{name: "Training Infrastructure", why: "Mixed precision, gradient checkpointing, and profiling.", tools: ["PyTorch Lightning", "HuggingFace Accelerate", "W&B"], depth: 4}
+					]
+				},
+				{
+					id: "llm", label: "TIER 3", title: "LLMs & Generative AI", color: "#FBBF24", bg: "#1a1400", urgency: "Highest-paid specialization", skills: [
+						{name: "Transformer Architecture", why: "Build one from scratch. Understand attention and KV-cache.", tools: ["Attention Is All You Need paper", "Karpathy's nanoGPT"], depth: 5},
+						{name: "Fine-tuning & PEFT", why: "LoRA and QLoRA — fine-tune frontier models on custom data.", tools: ["HuggingFace PEFT", "Axolotl", "Unsloth"], depth: 5},
+						{name: "RAG", why: "Grounding LLMs in private data. Chunking and vector search.", tools: ["LlamaIndex", "LangChain", "pgvector"], depth: 5},
+						{name: "LLM Agents", why: "Autonomous agents and tool calling — the frontier of applied LLM work.", tools: ["LangGraph", "CrewAI", "AutoGen"], depth: 5}
+					]
+				},
+				{
+					id: "infra", label: "TIER 4", title: "MLOps & Deployment", color: "#34D399", bg: "#001a0f", urgency: "What turns research into revenue", skills: [
+						{name: "Model Serving", why: "FastAPI, vLLM, and TensorRT. Production-level low latency.", tools: ["FastAPI", "vLLM", "Triton Inference Server"], depth: 5},
+						{name: "Docker & Containers", why: "Every ML deployment is containerized. Fluent Dockerfiles are a must.", tools: ["Docker docs", "Docker Deep Dive"], depth: 5},
+						{name: "Cloud Platforms", why: "Managed GPU instances and serverless inference.", tools: ["AWS SageMaker", "GCP Vertex AI", "Modal", "RunPod"], depth: 4},
+						{name: "Monitoring", why: "Models drift. Monitoring is how you maintain quality over time.", tools: ["Evidently AI", "Arize AI", "Langfuse"], depth: 4}
+					]
+				},
+				{
+					id: "meta", label: "TIER 5", title: "Career Leverage", color: "#60A5FA", bg: "#000d1a", urgency: "What makes you undeniable", skills: [
+						{name: "Implementing Papers", why: "Implement research before it hits tutorials. Papers are 2 years ahead.", tools: ["Arxiv Sanity", "Papers With Code"], depth: 5},
+						{name: "Open Source", why: "Your GitHub IS your resume. Signal real engineering skill.", tools: ["HuggingFace Hub", "GitHub Trending"], depth: 5},
+						{name: "Building & Shipping", why: "A deployed app beats a certification every time. Proof of work.", tools: ["Hugging Face Spaces", "Vercel", "Streamlit"], depth: 5}
+					]
+				}
+			]
+		};
+
+		const depthLabel = (d) => ["", "Basic", "Familiar", "Proficient", "Advanced", "Mastery"][d];
+		const depthColor = (d) => ["", "#555", "#888", "#FBBF24", "#FF6B35", "#00FFD1"][d];
+
+		let activeTierId = "foundation";
+		let expandedSkillIndex = null;
+
+		function init() {
+			document.getElementById('main-title').innerText = data.intro;
+			document.getElementById('main-subtitle').innerText = data.subtitle;
+
+			const nav = document.getElementById('tier-nav');
+			data.tiers.forEach(t => {
+				const btn = document.createElement('button');
+				btn.className = 'tier-btn';
+				btn.id = `btn-${t.id}`;
+				btn.innerText = t.label;
+				btn.style.borderColor = t.color;
+				btn.style.color = t.color;
+				btn.onclick = () => setActiveTier(t.id);
+				nav.appendChild(btn);
+			});
+
+			render();
+		}
+
+		function setActiveTier(id) {
+			activeTierId = id;
+			expandedSkillIndex = null;
+			render();
+		}
+
+		function setExpandedSkill(index) {
+			expandedSkillIndex = index;
+			render();
+		}
+
+		function render() {
+			const tier = data.tiers.find(t => t.id === activeTierId);
+
+			// Update Nav
+			data.tiers.forEach(t => {
+				const btn = document.getElementById(`btn-${t.id}`);
+				btn.classList.toggle('active', t.id === activeTierId);
+				btn.style.background = t.id === activeTierId ? t.color : 'transparent';
+				btn.style.color = t.id === activeTierId ? '#000' : t.color;
+			});
+
+			// Update Sidebar
+			const sidebar = document.getElementById('sidebar');
+			sidebar.style.background = tier.bg;
+			document.getElementById('tier-label').innerText = tier.label;
+			document.getElementById('tier-label').style.color = tier.color;
+			document.getElementById('tier-title').innerText = tier.title;
+			document.getElementById('tier-urgency').innerText = tier.urgency;
+
+			const skillList = document.getElementById('skill-list');
+			skillList.innerHTML = '';
+			tier.skills.forEach((s, i) => {
+				const item = document.createElement('div');
+				item.className = 'skill-item';
+				if (expandedSkillIndex === i) {
+					item.style.background = `${tier.color}15`;
+					item.style.borderLeftColor = tier.color;
+				}
+				item.onclick = () => setExpandedSkill(expandedSkillIndex === i ? null : i);
+				item.innerHTML = `
+                <span style="font-size: 12px; color: ${expandedSkillIndex === i ? tier.color : '#bbb'}">${s.name}</span>
+                <span style="font-size: 10px; color: ${depthColor(s.depth)}; letter-spacing: 1px;">${depthLabel(s.depth)}</span>
+            `;
+				skillList.appendChild(item);
+			});
+
+			// Update Detail Panel
+			const panel = document.getElementById('detail-panel');
+			panel.innerHTML = '';
+
+			const content = document.createElement('div');
+			content.className = 'fade-in';
+
+			if (expandedSkillIndex === null) {
+				content.innerHTML = `
+                <div style="border: 1px solid ${tier.color}30; border-left: 3px solid ${tier.color}; padding: 24px; margin-bottom: 24px; background: ${tier.color}08;">
+                    <div style="color: ${tier.color}; font-size: 11px; letter-spacing: 3px; margin-bottom: 8px;">TIER OVERVIEW</div>
+                    <div style="font-size: 24px; font-family: 'Bebas Neue', sans-serif; color: #fff; letter-spacing: 2px; margin-bottom: 8px;">${tier.title}</div>
+                    <div style="color: #aaa; font-size: 13px; line-height: 1.6;">${tier.skills.length} core skills to master. Click a skill to explore.</div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px;">
+                    ${tier.skills.map((s, i) => `
+                        <div class="skill-card" onclick="setExpandedSkill(${i})" style="--active-color: ${tier.color}">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                                <div style="font-size: 13px; color: #fff; font-weight: bold;">${s.name}</div>
+                                <div style="font-size: 9px; color: #000; background: ${depthColor(s.depth)}; padding: 2px 6px; letter-spacing: 1px;">${depthLabel(s.depth)}</div>
+                            </div>
+                            <div style="display: flex; gap: 2px;">
+                                ${[1, 2, 3, 4, 5].map(n => `<div style="height: 3px; flex: 1; background: ${n <= s.depth ? tier.color : '#222'}"></div>`).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+			} else {
+				const s = tier.skills[expandedSkillIndex];
+				content.innerHTML = `
+                <button onclick="setExpandedSkill(null)" style="background: none; border: none; color: #555; font-size: 11px; cursor: pointer; margin-bottom: 24px; letter-spacing: 2px; padding: 0;">← BACK TO OVERVIEW</button>
+                <div style="margin-bottom: 32px;">
+                    <div style="color: ${tier.color}; font-size: 10px; letter-spacing: 4px; margin-bottom: 8px;">${tier.label} / SKILL</div>
+                    <div style="font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: #fff; letter-spacing: 2px; line-height: 1;">${s.name}</div>
+                    <div style="display: flex; align-items: center; gap: 12px; margin-top: 12px;">
+                        <div style="display: flex; gap: 3px;">
+                            ${[1, 2, 3, 4, 5].map(n => `<div style="width: 24px; height: 4px; background: ${n <= s.depth ? tier.color : '#222'}"></div>`).join('')}
+                        </div>
+                        <span style="color: ${depthColor(s.depth)}; font-size: 11px; letter-spacing: 2px;">${depthLabel(s.depth)} REQUIRED</span>
+                    </div>
+                </div>
+                <div style="margin-bottom: 32px;">
+                    <div style="color: #555; font-size: 10px; letter-spacing: 3px; margin-bottom: 12px;">WHY THIS MATTERS</div>
+                    <div style="border-left: 2px solid ${tier.color}; padding-left: 20px; color: #ccc; font-size: 15px; line-height: 1.7;">${s.why}</div>
+                </div>
+                <div>
+                    <div style="color: #555; font-size: 10px; letter-spacing: 3px; margin-bottom: 12px;">RECOMMENDED RESOURCES</div>
+                    ${s.tools.map(tool => `
+                        <div class="resource-item">
+                            <span style="color: ${tier.color}; font-size: 10px;">▸</span>
+                            <span style="font-size: 13px; color: #ddd;">${tool}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <div style="margin-top: 32px; display: flex; justify-content: space-between;">
+                    <button onclick="setExpandedSkill(${expandedSkillIndex - 1})" ${expandedSkillIndex === 0 ? 'disabled' : ''} style="background: none; border: 1px solid ${tier.color}; color: ${tier.color}; padding: 8px 20px; font-size: 11px; cursor: pointer; letter-spacing: 2px;">← PREV</button>
+                    <button onclick="setExpandedSkill(${expandedSkillIndex + 1})" ${expandedSkillIndex === tier.skills.length - 1 ? 'disabled' : ''} style="background: none; border: 1px solid ${tier.color}; color: ${tier.color}; padding: 8px 20px; font-size: 11px; cursor: pointer; letter-spacing: 2px;">NEXT →</button>
+                </div>
+            `;
+			}
+			panel.appendChild(content);
+		}
+
+		init();
+	</script>
+
+</body>
+
+</html>
