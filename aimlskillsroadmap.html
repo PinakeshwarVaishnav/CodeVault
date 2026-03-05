@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Self-Taught AI/ML Engineer Roadmap</title>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+		rel="stylesheet">
+	<style>
+		:root {
+			--bg: #080B12;
+			--surface: #0D1220;
+			--surface2: #111827;
+			--border: rgba(255, 255, 255, 0.06);
+			--accent1: #00FFB2;
+			--accent2: #7B61FF;
+			--accent3: #FF6B35;
+			--accent4: #00C2FF;
+			--accent5: #FFD93D;
+			--text: #E8EDF5;
+			--muted: #6B7A99;
+			--tier1: #00FFB2;
+			--tier2: #7B61FF;
+			--tier3: #FF6B35;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			background: var(--bg);
+			color: var(--text);
+			font-family: 'DM Sans', sans-serif;
+			font-weight: 300;
+			overflow-x: hidden;
+			min-height: 100vh;
+		}
+
+		/* Animated background grid */
+		body::before {
+			content: '';
+			position: fixed;
+			inset: 0;
+			background-image:
+				linear-gradient(rgba(0, 255, 178, 0.03) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(0, 255, 178, 0.03) 1px, transparent 1px);
+			background-size: 48px 48px;
+			pointer-events: none;
+			z-index: 0;
+		}
+
+		body::after {
+			content: '';
+			position: fixed;
+			top: -50%;
+			left: -20%;
+			width: 700px;
+			height: 700px;
+			background: radial-gradient(circle, rgba(123, 97, 255, 0.08) 0%, transparent 65%);
+			pointer-events: none;
+			z-index: 0;
+			animation: drift 18s ease-in-out infinite alternate;
+		}
+
+		@keyframes drift {
+			from {
+				transform: translate(0, 0);
+			}
+
+			to {
+				transform: translate(10%, 8%);
+			}
+		}
+
+		.container {
+			max-width: 1280px;
+			margin: 0 auto;
+			padding: 0 32px 80px;
+			position: relative;
+			z-index: 1;
+		}
+
+		/* ─── HEADER ─── */
+		header {
+			padding: 64px 0 48px;
+			text-align: center;
+			position: relative;
+		}
+
+		.header-tag {
+			display: inline-block;
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			letter-spacing: 0.2em;
+			color: var(--accent1);
+			border: 1px solid rgba(0, 255, 178, 0.3);
+			padding: 6px 16px;
+			border-radius: 2px;
+			margin-bottom: 28px;
+			text-transform: uppercase;
+			background: rgba(0, 255, 178, 0.04);
+		}
+
+		h1 {
+			font-family: 'Syne', sans-serif;
+			font-weight: 800;
+			font-size: clamp(36px, 5vw, 72px);
+			line-height: 1.0;
+			letter-spacing: -0.03em;
+			background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			margin-bottom: 20px;
+		}
+
+		h1 span {
+			background: linear-gradient(90deg, var(--accent1), var(--accent4));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+
+		.subtitle {
+			font-size: 17px;
+			color: var(--muted);
+			max-width: 580px;
+			margin: 0 auto 48px;
+			line-height: 1.6;
+			font-weight: 400;
+		}
+
+		/* Stats bar */
+		.stats-bar {
+			display: flex;
+			justify-content: center;
+			gap: 8px;
+			flex-wrap: wrap;
+			margin-bottom: 16px;
+		}
+
+		.stat-chip {
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			padding: 8px 18px;
+			border-radius: 2px;
+			letter-spacing: 0.05em;
+		}
+
+		.stat-chip.green {
+			background: rgba(0, 255, 178, 0.08);
+			color: var(--accent1);
+			border: 1px solid rgba(0, 255, 178, 0.2);
+		}
+
+		.stat-chip.purple {
+			background: rgba(123, 97, 255, 0.08);
+			color: var(--accent2);
+			border: 1px solid rgba(123, 97, 255, 0.2);
+		}
+
+		.stat-chip.orange {
+			background: rgba(255, 107, 53, 0.08);
+			color: var(--accent3);
+			border: 1px solid rgba(255, 107, 53, 0.2);
+		}
+
+		.stat-chip.blue {
+			background: rgba(0, 194, 255, 0.08);
+			color: var(--accent4);
+			border: 1px solid rgba(0, 194, 255, 0.2);
+		}
+
+		/* ─── TIER LEGEND ─── */
+		.tier-legend {
+			display: flex;
+			justify-content: center;
+			gap: 32px;
+			margin-bottom: 56px;
+			flex-wrap: wrap;
+		}
+
+		.tier-item {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-size: 13px;
+			color: var(--muted);
+		}
+
+		.tier-dot {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			flex-shrink: 0;
+		}
+
+		/* ─── SECTION HEADERS ─── */
+		.phase-label {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			letter-spacing: 0.25em;
+			text-transform: uppercase;
+			color: var(--muted);
+			margin-bottom: 24px;
+			margin-top: 64px;
+			display: flex;
+			align-items: center;
+			gap: 16px;
+		}
+
+		.phase-label::after {
+			content: '';
+			flex: 1;
+			height: 1px;
+			background: var(--border);
+		}
+
+		/* ─── GRID LAYOUTS ─── */
+		.grid-2 {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 16px;
+		}
+
+		.grid-3 {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 16px;
+		}
+
+		.grid-4 {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			gap: 16px;
+		}
+
+		@media (max-width: 900px) {
+
+			.grid-3,
+			.grid-4 {
+				grid-template-columns: 1fr 1fr;
+			}
+		}
+
+		@media (max-width: 600px) {
+
+			.grid-2,
+			.grid-3,
+			.grid-4 {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		/* ─── SKILL CARDS ─── */
+		.card {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 4px;
+			padding: 24px;
+			position: relative;
+			overflow: hidden;
+			transition: border-color 0.2s, transform 0.2s;
+		}
+
+		.card:hover {
+			border-color: rgba(255, 255, 255, 0.12);
+			transform: translateY(-2px);
+		}
+
+		.card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 2px;
+			border-radius: 4px 4px 0 0;
+		}
+
+		.card.t1::before {
+			background: var(--tier1);
+		}
+
+		.card.t2::before {
+			background: var(--tier2);
+		}
+
+		.card.t3::before {
+			background: var(--tier3);
+		}
+
+		.card.tc::before {
+			background: var(--accent4);
+		}
+
+		.card.tg::before {
+			background: var(--accent5);
+		}
+
+		.card-icon {
+			font-size: 22px;
+			margin-bottom: 12px;
+			display: block;
+		}
+
+		.card-title {
+			font-family: 'Syne', sans-serif;
+			font-weight: 700;
+			font-size: 15px;
+			color: #fff;
+			margin-bottom: 4px;
+			letter-spacing: -0.01em;
+		}
+
+		.card-subtitle {
+			font-size: 11px;
+			color: var(--muted);
+			font-family: 'Space Mono', monospace;
+			margin-bottom: 16px;
+			letter-spacing: 0.04em;
+		}
+
+		.skill-list {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+
+		.skill-list li {
+			font-size: 13px;
+			color: #A8B5CC;
+			display: flex;
+			align-items: flex-start;
+			gap: 8px;
+			line-height: 1.45;
+		}
+
+		.skill-list li::before {
+			content: '›';
+			flex-shrink: 0;
+			margin-top: 1px;
+			opacity: 0.4;
+		}
+
+		.skill-list li strong {
+			color: var(--text);
+			font-weight: 500;
+		}
+
+		/* Priority badge */
+		.badge {
+			display: inline-block;
+			font-family: 'Space Mono', monospace;
+			font-size: 9px;
+			padding: 2px 7px;
+			border-radius: 2px;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+			margin-left: 6px;
+			vertical-align: middle;
+			position: relative;
+			top: -1px;
+		}
+
+		.badge.critical {
+			background: rgba(0, 255, 178, 0.12);
+			color: var(--accent1);
+			border: 1px solid rgba(0, 255, 178, 0.25);
+		}
+
+		.badge.high {
+			background: rgba(123, 97, 255, 0.12);
+			color: var(--accent2);
+			border: 1px solid rgba(123, 97, 255, 0.25);
+		}
+
+		.badge.hot {
+			background: rgba(255, 107, 53, 0.12);
+			color: var(--accent3);
+			border: 1px solid rgba(255, 107, 53, 0.25);
+		}
+
+		.badge.new {
+			background: rgba(0, 194, 255, 0.12);
+			color: var(--accent4);
+			border: 1px solid rgba(0, 194, 255, 0.25);
+		}
+
+		/* ─── FEATURED / WIDE CARDS ─── */
+		.card-wide {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 4px;
+			padding: 28px 32px;
+			position: relative;
+			overflow: hidden;
+			margin-bottom: 16px;
+		}
+
+		.card-wide::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 2px;
+		}
+
+		.card-wide.gradient-green::before {
+			background: linear-gradient(90deg, var(--accent1), var(--accent4));
+		}
+
+		.card-wide.gradient-purple::before {
+			background: linear-gradient(90deg, var(--accent2), var(--accent1));
+		}
+
+		/* ─── ROLES TABLE ─── */
+		.roles-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+			gap: 16px;
+		}
+
+		.role-card {
+			background: var(--surface2);
+			border: 1px solid var(--border);
+			border-radius: 4px;
+			padding: 20px;
+			transition: border-color 0.2s;
+		}
+
+		.role-card:hover {
+			border-color: rgba(0, 255, 178, 0.2);
+		}
+
+		.role-title {
+			font-family: 'Syne', sans-serif;
+			font-weight: 700;
+			font-size: 14px;
+			color: #fff;
+			margin-bottom: 6px;
+		}
+
+		.role-salary {
+			font-family: 'Space Mono', monospace;
+			font-size: 13px;
+			color: var(--accent1);
+			margin-bottom: 10px;
+		}
+
+		.role-desc {
+			font-size: 12px;
+			color: var(--muted);
+			line-height: 1.5;
+		}
+
+		/* ─── TIMELINE PATH ─── */
+		.timeline {
+			position: relative;
+			padding-left: 36px;
+		}
+
+		.timeline::before {
+			content: '';
+			position: absolute;
+			left: 7px;
+			top: 8px;
+			bottom: 8px;
+			width: 1px;
+			background: linear-gradient(180deg, var(--accent1), var(--accent2), var(--accent3));
+			opacity: 0.3;
+		}
+
+		.timeline-item {
+			position: relative;
+			margin-bottom: 28px;
+		}
+
+		.timeline-item::before {
+			content: '';
+			position: absolute;
+			left: -32px;
+			top: 6px;
+			width: 9px;
+			height: 9px;
+			border-radius: 50%;
+			background: var(--accent1);
+			border: 2px solid var(--bg);
+			box-shadow: 0 0 8px rgba(0, 255, 178, 0.5);
+		}
+
+		.timeline-item:nth-child(2)::before {
+			background: var(--accent4);
+			box-shadow: 0 0 8px rgba(0, 194, 255, 0.5);
+		}
+
+		.timeline-item:nth-child(3)::before {
+			background: var(--accent2);
+			box-shadow: 0 0 8px rgba(123, 97, 255, 0.5);
+		}
+
+		.timeline-item:nth-child(4)::before {
+			background: var(--accent3);
+			box-shadow: 0 0 8px rgba(255, 107, 53, 0.5);
+		}
+
+		.timeline-item:nth-child(5)::before {
+			background: var(--accent5);
+			box-shadow: 0 0 8px rgba(255, 217, 61, 0.5);
+		}
+
+		.timeline-item:nth-child(6)::before {
+			background: var(--accent1);
+			box-shadow: 0 0 8px rgba(0, 255, 178, 0.5);
+		}
+
+		.timeline-head {
+			font-family: 'Syne', sans-serif;
+			font-weight: 700;
+			font-size: 14px;
+			color: #fff;
+			margin-bottom: 4px;
+		}
+
+		.timeline-time {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: var(--accent1);
+			letter-spacing: 0.08em;
+			margin-bottom: 6px;
+		}
+
+		.timeline-text {
+			font-size: 13px;
+			color: var(--muted);
+			line-height: 1.55;
+		}
+
+		/* ─── TOOLS TAGS ─── */
+		.tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 6px;
+			margin-top: 14px;
+		}
+
+		.tag {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			padding: 4px 10px;
+			border-radius: 2px;
+			background: rgba(255, 255, 255, 0.04);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			color: var(--muted);
+			letter-spacing: 0.04em;
+			transition: all 0.2s;
+		}
+
+		.tag:hover {
+			background: rgba(0, 255, 178, 0.06);
+			border-color: rgba(0, 255, 178, 0.2);
+			color: var(--accent1);
+		}
+
+		/* ─── SECTION TITLE ─── */
+		.section-title {
+			font-family: 'Syne', sans-serif;
+			font-weight: 800;
+			font-size: clamp(24px, 3vw, 36px);
+			letter-spacing: -0.03em;
+			color: #fff;
+			margin-bottom: 8px;
+		}
+
+		.section-desc {
+			font-size: 14px;
+			color: var(--muted);
+			margin-bottom: 24px;
+			max-width: 600px;
+		}
+
+		/* ─── DIVIDER ─── */
+		.divider {
+			height: 1px;
+			background: var(--border);
+			margin: 8px 0 48px;
+		}
+
+		/* ─── SPECIAL CALL-OUT ─── */
+		.callout {
+			border: 1px solid rgba(0, 255, 178, 0.2);
+			background: rgba(0, 255, 178, 0.04);
+			border-radius: 4px;
+			padding: 20px 24px;
+			margin-bottom: 16px;
+			display: flex;
+			gap: 16px;
+			align-items: flex-start;
+		}
+
+		.callout-icon {
+			font-size: 20px;
+			flex-shrink: 0;
+			padding-top: 2px;
+		}
+
+		.callout-text {
+			font-size: 13px;
+			line-height: 1.6;
+			color: #A8B5CC;
+		}
+
+		.callout-text strong {
+			color: var(--accent1);
+			font-weight: 500;
+		}
+
+		/* ─── FOOTER ─── */
+		footer {
+			text-align: center;
+			padding: 40px 0;
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			color: var(--muted);
+			border-top: 1px solid var(--border);
+			letter-spacing: 0.06em;
+			margin-top: 48px;
+		}
+
+		/* ─── ANIMATIONS ─── */
+		.card,
+		.role-card,
+		.callout {
+			animation: fadeUp 0.5s ease both;
+		}
+
+		@keyframes fadeUp {
+			from {
+				opacity: 0;
+				transform: translateY(16px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.card:nth-child(1) {
+			animation-delay: 0.05s;
+		}
+
+		.card:nth-child(2) {
+			animation-delay: 0.10s;
+		}
+
+		.card:nth-child(3) {
+			animation-delay: 0.15s;
+		}
+
+		.card:nth-child(4) {
+			animation-delay: 0.20s;
+		}
+
+		/* Glow accent */
+		.glow-green {
+			color: var(--accent1);
+			text-shadow: 0 0 20px rgba(0, 255, 178, 0.4);
+		}
+
+		.glow-purple {
+			color: var(--accent2);
+		}
+
+		/* Number indicator */
+		.num {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: var(--muted);
+			width: 22px;
+			flex-shrink: 0;
+			padding-top: 1px;
+		}
+
+		.skill-list li {
+			align-items: flex-start;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<!-- HEADER -->
+		<header>
+			<div class="header-tag">// The Complete Roadmap · 2025–2027</div>
+			<h1>Self-Taught<br><span>AI/ML Engineer</span><br>Masterplan</h1>
+			<p class="subtitle">Every skill you need — prioritized, sequenced, and battle-tested — to land
+				high-paying remote AI roles without a degree.</p>
+			<div class="stats-bar">
+				<div class="stat-chip green">⚡ 9 Core Domains</div>
+				<div class="stat-chip purple">🔮 Future-Proof Skills</div>
+				<div class="stat-chip orange">💰 $150k–$400k+ Roles</div>
+				<div class="stat-chip blue">🌐 100% Remote Possible</div>
+			</div>
+		</header>
+
+		<!-- TIER LEGEND -->
+		<div class="tier-legend">
+			<div class="tier-item">
+				<div class="tier-dot" style="background:#00FFB2;box-shadow:0 0 6px rgba(0,255,178,0.5)">
+				</div> <strong style="color:#fff">CRITICAL</strong> — Master first, non-negotiable
+			</div>
+			<div class="tier-item">
+				<div class="tier-dot"
+					style="background:#7B61FF;box-shadow:0 0 6px rgba(123,97,255,0.5)"></div>
+				<strong style="color:#fff">HIGH IMPACT</strong> — Major career multiplier
+			</div>
+			<div class="tier-item">
+				<div class="tier-dot"
+					style="background:#FF6B35;box-shadow:0 0 6px rgba(255,107,53,0.5)"></div>
+				<strong style="color:#fff">STRATEGIC</strong> — Differentiator & specialization
+			</div>
+			<div class="tier-item">
+				<div class="tier-dot" style="background:#00C2FF;box-shadow:0 0 6px rgba(0,194,255,0.5)">
+				</div> <strong style="color:#fff">EMERGING</strong> — Tomorrow's demand, learn today
+			</div>
+		</div>
+
+		<div class="divider"></div>
+
+		<!-- ═══════════════════════════════════════════ -->
+		<!-- PHASE 1: FOUNDATIONS -->
+		<!-- ═══════════════════════════════════════════ -->
+		<div class="phase-label">Phase 01 — Non-Negotiable Foundations</div>
+
+		<div class="section-title">Math & Programming Core</div>
+		<p class="section-desc">The irreplaceable bedrock. No shortcuts. These skills determine your ceiling as
+			an AI engineer.</p>
+
+		<div class="grid-3">
+
+			<div class="card t1">
+				<span class="card-icon">∑</span>
+				<div class="card-title">Linear Algebra <span class="badge critical">critical</span>
+				</div>
+				<div class="card-subtitle">THE language of ML</div>
+				<ul class="skill-list">
+					<li><strong>Vectors, matrices, tensors</strong> — the actual data containers
+					</li>
+					<li><strong>Matrix multiplication</strong> — how every neural net layer works
+					</li>
+					<li><strong>Eigenvalues & eigenvectors</strong> — PCA, SVD, dimensionality
+						reduction</li>
+					<li><strong>Dot products & norms</strong> — similarity, attention scores</li>
+					<li><strong>Singular Value Decomposition</strong> — compression, recommendations
+					</li>
+					<li>Projections, orthogonality, basis transformations</li>
+				</ul>
+				<div class="tags">
+					<span class="tag">3Blue1Brown</span>
+					<span class="tag">Gilbert Strang MIT</span>
+					<span class="tag">NumPy</span>
+				</div>
+			</div>
+
+			<div class="card t1">
+				<span class="card-icon">∂</span>
+				<div class="card-title">Calculus & Optimization <span
+						class="badge critical">critical</span></div>
+				<div class="card-subtitle">How models actually learn</div>
+				<ul class="skill-list">
+					<li><strong>Derivatives & chain rule</strong> — backpropagation foundations</li>
+					<li><strong>Gradient descent</strong> — SGD, Adam, RMSProp optimizers</li>
+					<li><strong>Partial derivatives</strong> — multi-variable loss landscapes</li>
+					<li><strong>Jacobians & Hessians</strong> — second-order optimization</li>
+					<li>Convex vs non-convex problems, local minima</li>
+					<li>Learning rate schedules, warmup, cosine annealing</li>
+				</ul>
+				<div class="tags">
+					<span class="tag">Khan Academy</span>
+					<span class="tag">Andrej Karpathy</span>
+					<span class="tag">micrograd</span>
+				</div>
+			</div>
+
+			<div class="card t1">
+				<span class="card-icon">𝑃</span>
+				<div class="card-title">Statistics & Probability <span
+						class="badge critical">critical</span></div>
+				<div class="card-subtitle">Reasoning under uncertainty</div>
+				<ul class="skill-list">
+					<li><strong>Bayes theorem</strong> — belief updates, Bayesian ML</li>
+					<li><strong>Probability distributions</strong> — Gaussian, Bernoulli, Poisson
+					</li>
+					<li><strong>Maximum Likelihood Estimation</strong> — loss function derivation
+					</li>
+					<li><strong>Statistical hypothesis testing</strong> — A/B tests for ML</li>
+					<li>Expectation, variance, covariance matrices</li>
+					<li>KL divergence, entropy, information theory basics</li>
+				</ul>
+				<div class="tags">
+					<span class="tag">StatQuest</span>
+					<span class="tag">scipy.stats</span>
+					<span class="tag">Think Stats</span>
+				</div>
+			</div>
+
+			<div class="card t1">
+				<span class="card-icon">🐍</span>
+				<div class="card-title">Python Mastery <span class="badge critical">critical</span>
+				</div>
+				<div class="card-subtitle">The lingua franca of AI</div>
+				<ul class="skill-list">
+					<li><strong>OOP, decorators, generators</strong> — write professional code</li>
+					<li><strong>NumPy</strong> — vectorized ops, broadcasting, array manipulation
+					</li>
+					<li><strong>Pandas</strong> — data wrangling, groupby, merges, pipelines</li>
+					<li><strong>Matplotlib / Seaborn / Plotly</strong> — data visualization</li>
+					<li>Type hints, virtual environments, packaging</li>
+					<li>Async, multiprocessing for data pipelines</li>
+					<li>Profiling, debugging, writing clean modular code</li>
+				</ul>
+				<div class="tags">
+					<span class="tag">Python docs</span>
+					<span class="tag">Real Python</span>
+					<span class="tag">Fluent Python</span>
+				</div>
+			</div>
+
+			<div class="card t1">
+				<span class="card-icon">🗄️</span>
+				<div class="card-title">SQL & Data Fluency <span class="badge critical">critical</span>
+				</div>
+				<div class="card-subtitle">Data is always upstream</div>
+				<ul class="skill-list">
+					<li><strong>SQL fundamentals</strong> — JOINs, aggregates, window functions</li>
+					<li><strong>Advanced SQL</strong> — CTEs, subqueries, query optimization</li>
+					<li><strong>Data modeling</strong> — schemas, normalization, star schema</li>
+					<li>NoSQL: MongoDB, Redis, vector databases</li>
+					<li>BigQuery, Snowflake, Databricks basics</li>
+					<li>Data quality, profiling, anomaly detection</li>
+				</ul>
+				<div class="tags">
+					<span class="tag">Mode Analytics</span>
+					<span class="tag">SQLZoo</span>
+					<span class="tag">dbt</span>
+				</div>
+			</div>
+
+			<div class="card t1">
+				<span class="card-icon">⌨️</span>
+				<div class="card-title">Software Engineering <span
+						class="badge critical">critical</span></div>
+				<div class="card-subtitle">Makes you 10x more hireable</div>
+				<ul class="skill-list">
+					<li><strong>Git & GitHub</strong> — branching, PRs, code review workflow</li>
+					<li><strong>REST APIs</strong> — FastAPI, Flask, consuming 3rd-party APIs</li>
+					<li><strong>Docker</strong> — containerize every ML project</li>
+					<li><strong>Linux / Bash</strong> — shell scripting, cron, file management</li>
+					<li>Clean code, SOLID principles, design patterns</li>
+					<li>Testing: pytest, unit/integration tests for ML</li>
+					<li>CI/CD basics: GitHub Actions</li>
+				</ul>
+				<div class="tags">
+					<span class="tag">FastAPI</span>
+					<span class="tag">Docker Hub</span>
+					<span class="tag">GitHub Actions</span>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- ═══════════════════════════════════════════ -->
+		<!-- PHASE 2: CORE ML -->
+		<!-- ═══════════════════════════════════════════ -->
+		<div class="phase-label">Phase 02 — Classical Machine Learning</div>
+
+		<div class="section-title">Traditional ML Algorithms</div>
+		<p class="section-desc">Still used everywhere. Deep understanding here reveals the intuition behind all
+			modern AI.</p>
+
+		<div class="grid-4">
+
+			<div class="card t1">
+				<span class="card-icon">📈</span>
+				<div class="card-title">Supervised Learning</div>
+				<div class="card-subtitle">Core bread & butter</div>
+				<ul class="skill-list">
+					<li><strong>Linear / Logistic Regression</strong></li>
+					<li><strong>Decision Trees</strong> — splits, entropy, Gini</li>
+					<li><strong>Random Forests</strong> — bagging, feature importance</li>
+					<li><strong>Gradient Boosting</strong> — XGBoost, LightGBM, CatBoost</li>
+					<li><strong>SVMs</strong> — kernels, margins</li>
+					<li>k-NN, Naive Bayes</li>
+				</ul>
+			</div>
+
+			<div class="card t1">
+				<span class="card-icon">🔍</span>
+				<div class="card-title">Unsupervised Learning</div>
+				<div class="card-subtitle">Find hidden structure</div>
+				<ul class="skill-list">
+					<li><strong>K-Means, DBSCAN</strong> — clustering</li>
+					<li><strong>PCA, t-SNE, UMAP</strong> — dimensionality reduction</li>
+					<li><strong>Autoencoders</strong> — learned compressions</li>
+					<li>Anomaly detection methods</li>
+					<li>Gaussian Mixture Models</li>
+					<li>Association rule mining</li>
+				</ul>
+			</div>
+
+			<div class="card t1">
+				<span class="card-icon">⚖️</span>
+				<div class="card-title">Model Evaluation</div>
+				<div class="card-subtitle">Know if it actually works</div>
+				<ul class="skill-list">
+					<li><strong>Cross-validation</strong> — k-fold, stratified</li>
+					<li><strong>Metrics</strong> — AUC-ROC, F1, RMSE, MAE</li>
+					<li><strong>Bias-variance tradeoff</strong></li>
+					<li>Confusion matrices, precision/recall</li>
+					<li>Calibration, reliability diagrams</li>
+					<li>Statistical significance testing</li>
+				</ul>
+			</div>
+
+			<div class="card t1">
+				<span class="card-icon">🎯</span>
+				<div class="card-title">Feature Engineering</div>
+				<div class="card-subtitle">Underrated force multiplier</div>
+				<ul class="skill-list">
+					<li><strong>Feature selection</strong> — RFE, SHAP-based</li>
+					<li><strong>Encoding</strong> — target, ordinal, embeddings</li>
+					<li><strong>Scaling</strong> — standardization vs normalization</li>
+					<li>Handling missing data & outliers</li>
+					<li>Time-series feature extraction</li>
+					<li>Interaction terms, polynomial features</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="callout" style="margin-top:16px">
+			<div class="callout-icon">💡</div>
+			<div class="callout-text">
+				<strong>The Scikit-Learn Milestone:</strong> Build 10+ end-to-end ML projects using
+				scikit-learn pipelines — from raw data to deployed model. Master this before touching
+				deep learning. The discipline you develop here will make everything downstream easier
+				and make you stand out in interviews.
+			</div>
+		</div>
+
+		<!-- ═══════════════════════════════════════════ -->
+		<!-- PHASE 3: DEEP LEARNING -->
+		<!-- ═══════════════════════════════════════════ -->
+		<div class="phase-label">Phase 03 — Deep Learning</div>
+
+		<div class="section-title">Neural Networks & Modern DL</div>
+		<p class="section-desc">The core of modern AI. Understand every layer, every loss function, every
+			training trick.</p>
+
+		<div class="grid-3">
+
+			<div class="card t2">
+				<span class="card-icon">🧠</span>
+				<div class="card-title">Neural Network Fundamentals <span
+						class="badge high">essential</span></div>
+				<div class="card-subtitle">Build from scratch first</div>
+				<ul class="skill-list">
+					<li><strong>Forward & backward pass</strong> — implement from scratch</li>
+					<li><strong>Activation functions</strong> — ReLU, GELU, Sigmoid, Softmax</li>
+					<li><strong>Loss functions</strong> — CE, MSE, focal loss, contrastive</li>
+					<li><strong>Regularization</strong> — dropout, weight decay, batch norm</li>
+					<li>Initialization strategies — Xavier, He init</li>
+					<li>Vanishing/exploding gradients — solutions</li>
+				</ul>
+			</div>
+
+			<div class="card t2">
+				<span class="card-icon">👁️</span>
+				<div class="card-title">Computer Vision <span class="badge high">high demand</span>
+				</div>
+				<div class="card-subtitle">Still hugely valuable</div>
+				<ul class="skill-list">
+					<li><strong>CNNs</strong> — convolutions, pooling, receptive fields</li>
+					<li><strong>Architectures</strong> — ResNet, EfficientNet, ViT</li>
+					<li><strong>Object detection</strong> — YOLO, Faster R-CNN, DETR</li>
+					<li><strong>Segmentation</strong> — U-Net, Segment Anything Model</li>
+					<li>Image augmentation, transfer learning</li>
+					<li>Multimodal vision-language: CLIP, Florence</li>
+				</ul>
+			</div>
+
+			<div class="card t2">
+				<span class="card-icon">📝</span>
+				<div class="card-title">NLP & Sequence Models <span class="badge high">core skill</span>
+				</div>
+				<div class="card-subtitle">Foundation of LLM era</div>
+				<ul class="skill-list">
+					<li><strong>Word embeddings</strong> — Word2Vec, GloVe, tokenization</li>
+					<li><strong>RNNs / LSTMs / GRUs</strong> — sequence modeling basics</li>
+					<li><strong>Attention mechanism</strong> — keys, queries, values</li>
+					<li><strong>Transformer architecture</strong> — understand every component</li>
+					<li>BERT, GPT family architectures</li>
+					<li>Text classification, NER, summarization, QA</li>
+				</ul>
+			</div>
+
+			<div class="card t2">
+				<span class="card-icon">🔥</span>
+				<div class="card-title">PyTorch Deep Dive <span class="badge high">industry
+						standard</span></div>
+				<div class="card-subtitle">The pro framework of choice</div>
+				<ul class="skill-list">
+					<li><strong>Autograd</strong> — understand the computation graph</li>
+					<li><strong>nn.Module</strong> — build custom architectures</li>
+					<li><strong>DataLoaders</strong> — efficient data pipelines</li>
+					<li><strong>Training loops</strong> — best practices, grad clipping</li>
+					<li>Mixed precision training (fp16/bf16)</li>
+					<li>Distributed training — DDP, FSDP</li>
+					<li>torchcompile, model profiling</li>
+				</ul>
+			</div>
+
+			<div class="card t2">
+				<span class="card-icon">🎨</span>
+				<div class="card-title">Generative Models <span class="badge hot">🔥 hot</span></div>
+				<div class="card-subtitle">The future is generative</div>
+				<ul class="skill-list">
+					<li><strong>Diffusion models</strong> — DDPM, DDIM, score matching</li>
+					<li><strong>VAEs</strong> — latent space, ELBO, reparameterization</li>
+					<li><strong>GANs</strong> — training instability, StyleGAN concepts</li>
+					<li>Flow matching (state-of-the-art)</li>
+					<li>Stable Diffusion, FLUX architecture</li>
+					<li>Video generation concepts: Sora-class models</li>
+				</ul>
+			</div>
+
+			<div class="card t2">
+				<span class="card-icon">🏆</span>
+				<div class="card-title">Training at Scale <span class="badge high">senior skill</span>
+				</div>
+				<div class="card-subtitle">What separates juniors from seniors</div>
+				<ul class="skill-list">
+					<li><strong>GPU memory optimization</strong> — gradient checkpointing</li>
+					<li><strong>Flash Attention</strong> — efficient attention computation</li>
+					<li><strong>Multi-GPU strategies</strong> — DP, DDP, tensor parallelism</li>
+					<li>Quantization — INT8, INT4, GPTQ, AWQ</li>
+					<li>Training instability diagnosis & fixing</li>
+					<li>Reading & reproducing research papers</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<!-- ═══════════════════════════════════════════ -->
+		<!-- PHASE 4: LLMs — THE GOLD RUSH DOMAIN -->
+		<!-- ═══════════════════════════════════════════ -->
+		<div class="phase-label">Phase 04 — LLMs & Generative AI (Highest Demand)</div>
+
+		<div class="section-title">The <span class="glow-green">Gold Rush</span> Domain</div>
+		<p class="section-desc">Where the most jobs, highest salaries, and fastest growth live right now.
+			Prioritize ruthlessly.</p>
+
+		<div class="grid-2">
+
+			<div class="card-wide gradient-green">
+				<div
+					style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+					<div>
+						<span class="card-icon">🤖</span>
+						<div class="card-title" style="font-size:18px;margin-bottom:6px">LLM
+							Fine-Tuning & Alignment <span
+								class="badge critical">critical</span></div>
+						<div class="card-subtitle">Most sought-after skill in AI right now</div>
+					</div>
+				</div>
+				<ul class="skill-list" style="columns:2;gap:24px">
+					<li><strong>Supervised Fine-Tuning (SFT)</strong></li>
+					<li><strong>LoRA / QLoRA</strong> — parameter-efficient fine-tuning</li>
+					<li><strong>RLHF</strong> — reward modeling, PPO in LLMs</li>
+					<li><strong>DPO / ORPO / GRPO</strong> — modern alignment methods</li>
+					<li><strong>Instruction tuning</strong> — chat datasets, formatting</li>
+					<li>Dataset curation and quality filtering</li>
+					<li>Evaluation: evals, benchmarks, LLM-as-judge</li>
+					<li>Unsloth, Axolotl, TRL frameworks</li>
+				</ul>
+				<div class="tags">
+					<span class="tag">HuggingFace TRL</span>
+					<span class="tag">Unsloth</span>
+					<span class="tag">Axolotl</span>
+					<span class="tag">LLaMA Factory</span>
+					<span class="tag">DeepSpeed</span>
+				</div>
+			</div>
+
+			<div class="card-wide gradient-purple">
+				<span class="card-icon">🔗</span>
+				<div class="card-title" style="font-size:18px;margin-bottom:6px">RAG & Knowledge Systems
+					<span class="badge critical">critical</span>
+				</div>
+				<div class="card-subtitle">Every enterprise AI app needs this</div>
+				<ul class="skill-list" style="columns:2;gap:24px">
+					<li><strong>Vector databases</strong> — Pinecone, Weaviate, Qdrant, pgvector
+					</li>
+					<li><strong>Embedding models</strong> — choosing & fine-tuning them</li>
+					<li><strong>Chunking strategies</strong> — recursive, semantic, late chunking
+					</li>
+					<li><strong>Retrieval methods</strong> — dense, sparse, hybrid (BM25 + vector)
+					</li>
+					<li><strong>Reranking</strong> — cross-encoder rerankers</li>
+					<li>Advanced RAG — HyDE, RAPTOR, GraphRAG</li>
+					<li>RAG evaluation — RAGAS, context precision</li>
+					<li>Multi-modal RAG — images + text</li>
+				</ul>
+				<div class="tags">
+					<span class="tag">LangChain</span>
+					<span class="tag">LlamaIndex</span>
+					<span class="tag">Qdrant</span>
+					<span class="tag">pgvector</span>
+					<span class="tag">FAISS</span>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="grid-3" style="margin-top:16px">
+
+			<div class="card tc">
+				<span class="card-icon">🤝</span>
+				<div class="card-title">AI Agents & Orchestration <span
+						class="badge new">emerging</span></div>
+				<div class="card-subtitle">The next frontier — exploding demand</div>
+				<ul class="skill-list">
+					<li><strong>ReAct / Chain-of-Thought</strong> — reasoning patterns</li>
+					<li><strong>Tool calling / function calling</strong> — LLM + APIs</li>
+					<li><strong>Multi-agent systems</strong> — orchestration patterns</li>
+					<li>LangGraph, CrewAI, AutoGen architectures</li>
+					<li>Memory: in-context, episodic, semantic</li>
+					<li>Planning, reflection, self-critique loops</li>
+					<li>Agentic evals and reliability testing</li>
+				</ul>
+			</div>
+
+			<div class="card tc">
+				<span class="card-icon">💬</span>
+				<div class="card-title">Prompt Engineering <span class="badge high">undervalued</span>
+				</div>
+				<div class="card-subtitle">Immediately monetizable skill</div>
+				<ul class="skill-list">
+					<li><strong>System prompt design</strong> — roles, constraints, personas</li>
+					<li><strong>Few-shot & zero-shot</strong> — when and how</li>
+					<li><strong>Chain-of-Thought prompting</strong></li>
+					<li>Structured output extraction</li>
+					<li>Adversarial prompting & red-teaming</li>
+					<li>Prompt optimization — DSPy, OPRO</li>
+					<li>Cost/latency optimization strategies</li>
+				</ul>
+			</div>
+
+			<div class="card tc">
+				<span class="card-icon">🔧</span>
+				<div class="card-title">HuggingFace Ecosystem <span
+						class="badge critical">must-know</span></div>
+				<div class="card-subtitle">The GitHub of AI models</div>
+				<ul class="skill-list">
+					<li><strong>Transformers library</strong> — model loading, inference</li>
+					<li><strong>Datasets library</strong> — efficient data loading</li>
+					<li><strong>PEFT</strong> — LoRA, prefix tuning, adapters</li>
+					<li>Accelerate — multi-GPU training</li>
+					<li>Tokenizers — fast BPE, custom vocabs</li>
+					<li>Hub: model cards, datasets, Spaces</li>
+					<li>Diffusers — image generation pipelines</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<!-- ═══════════════════════════════════════════ -->
+		<!-- PHASE 5: MLOps -->
+		<!-- ═══════════════════════════════════════════ -->
+		<div class="phase-label">Phase 05 — MLOps & Production AI</div>
+
+		<div class="section-title">Ship Real Systems</div>
+		<p class="section-desc">Research skills get you in the door. Production skills get you promoted and make
+			you 2–3x more valuable.</p>
+
+		<div class="grid-4">
+
+			<div class="card t3">
+				<span class="card-icon">☁️</span>
+				<div class="card-title">Cloud Platforms <span class="badge hot">🔥</span></div>
+				<div class="card-subtitle">Pick one, know all three</div>
+				<ul class="skill-list">
+					<li><strong>AWS</strong> — SageMaker, EC2, S3, Lambda, Bedrock</li>
+					<li><strong>GCP</strong> — Vertex AI, BigQuery, GKE</li>
+					<li><strong>Azure</strong> — Azure ML, OpenAI Service</li>
+					<li>Spot/preemptible instances for cheap GPU</li>
+					<li>IAM, VPC, security basics</li>
+					<li>Cost optimization strategies</li>
+				</ul>
+			</div>
+
+			<div class="card t3">
+				<span class="card-icon">🚀</span>
+				<div class="card-title">Model Deployment</div>
+				<div class="card-subtitle">Getting models into the world</div>
+				<ul class="skill-list">
+					<li><strong>FastAPI</strong> — serve ML models as APIs</li>
+					<li><strong>TorchServe / TGI / vLLM</strong> — LLM inference servers</li>
+					<li><strong>ONNX, TensorRT</strong> — model optimization</li>
+					<li>Kubernetes basics for ML workloads</li>
+					<li>A/B testing, canary deployments</li>
+					<li>Serverless inference: Modal, Replicate</li>
+				</ul>
+			</div>
+
+			<div class="card t3">
+				<span class="card-icon">📊</span>
+				<div class="card-title">Experiment Tracking</div>
+				<div class="card-subtitle">Reproducible science</div>
+				<ul class="skill-list">
+					<li><strong>MLflow</strong> — logging, model registry</li>
+					<li><strong>Weights & Biases</strong> — the industry favorite</li>
+					<li>Data versioning — DVC, LakeFS</li>
+					<li>Feature stores — Feast, Tecton</li>
+					<li>Hyperparameter optimization — Optuna, Ray Tune</li>
+					<li>Model cards and documentation</li>
+				</ul>
+			</div>
+
+			<div class="card t3">
+				<span class="card-icon">🔭</span>
+				<div class="card-title">Monitoring & LLMOps</div>
+				<div class="card-subtitle">Production doesn't end at deploy</div>
+				<ul class="skill-list">
+					<li><strong>Data drift detection</strong> — Evidently, Alibi Detect</li>
+					<li><strong>LLM observability</strong> — LangSmith, Langfuse, Arize</li>
+					<li>Model performance degradation alerts</li>
+					<li>Guardrails — content filtering, hallucination</li>
+					<li>Cost monitoring for LLM APIs</li>
+					<li>Shadow deployments, online evaluation</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<!-- ═══════════════════════════════════════════ -->
+		<!-- PHASE 6: ADVANCED SPECIALIZATIONS -->
+		<!-- ═══════════════════════════════════════════ -->
+		<div class="phase-label">Phase 06 — High-Value Specializations (Pick 1–2)</div>
+
+		<div class="section-title">Become Irreplaceable</div>
+		<p class="section-desc">Specialists earn 40–80% more than generalists. Pick the intersection of demand +
+			your interest.</p>
+
+		<div class="grid-3">
+
+			<div class="card t3">
+				<span class="card-icon">🎙️</span>
+				<div class="card-title">Audio & Speech AI <span class="badge hot">niche gold</span>
+				</div>
+				<div class="card-subtitle">High demand, low supply of talent</div>
+				<ul class="skill-list">
+					<li><strong>Whisper</strong> — ASR, transcription pipelines</li>
+					<li><strong>TTS systems</strong> — ElevenLabs-class models</li>
+					<li>Audio feature extraction — MFCCs, spectrograms</li>
+					<li>Voice cloning, voice conversion</li>
+					<li>Real-time streaming audio inference</li>
+					<li>Wav2Vec, SpeechBrain, K2</li>
+				</ul>
+			</div>
+
+			<div class="card t3">
+				<span class="card-icon">🔬</span>
+				<div class="card-title">AI for Science <span class="badge new">future-proof</span></div>
+				<div class="card-subtitle">Bio/pharma paying massive salaries</div>
+				<ul class="skill-list">
+					<li><strong>AlphaFold</strong> — protein structure prediction</li>
+					<li><strong>Molecular ML</strong> — graph neural networks</li>
+					<li>Drug discovery pipelines</li>
+					<li>Clinical NLP — medical record extraction</li>
+					<li>Genomics data: sequence modeling</li>
+					<li>AI-guided experiments, lab automation</li>
+				</ul>
+			</div>
+
+			<div class="card t3">
+				<span class="card-icon">🏦</span>
+				<div class="card-title">FinTech AI <span class="badge high">lucrative</span></div>
+				<div class="card-subtitle">Banks spend unlimited on AI</div>
+				<ul class="skill-list">
+					<li><strong>Time series forecasting</strong> — Temporal Fusion Transformer</li>
+					<li><strong>Fraud detection</strong> — anomaly detection at scale</li>
+					<li>Algorithmic trading signals</li>
+					<li>Credit risk modeling</li>
+					<li>Regulatory & explainability requirements</li>
+					<li>Alternative data processing</li>
+				</ul>
+			</div>
+
+			<div class="card t3">
+				<span class="card-icon">🕹️</span>
+				<div class="card-title">Reinforcement Learning <span class="badge new">resurging</span>
+				</div>
+				<div class="card-subtitle">Critical for advanced AI systems</div>
+				<ul class="skill-list">
+					<li><strong>MDP, Bellman equations</strong> — theoretical foundations</li>
+					<li><strong>Q-Learning, DQN, PPO</strong> — core algorithms</li>
+					<li>Stable Baselines3, RLlib, CleanRL</li>
+					<li>RLHF — directly applicable to LLMs</li>
+					<li>Multi-agent RL, game playing</li>
+					<li>Robotics simulation: MuJoCo, Isaac Gym</li>
+				</ul>
+			</div>
+
+			<div class="card t3">
+				<span class="card-icon">🔐</span>
+				<div class="card-title">AI Safety & Alignment <span class="badge new">critical
+						future</span></div>
+				<div class="card-subtitle">Most important, emerging fast</div>
+				<ul class="skill-list">
+					<li><strong>Constitutional AI</strong> — RLHF alternatives</li>
+					<li><strong>Interpretability</strong> — mechanistic interp, circuits</li>
+					<li>Red-teaming, jailbreak research</li>
+					<li>Bias, fairness, representation audits</li>
+					<li>Formal verification for neural nets</li>
+					<li>AI governance and policy context</li>
+				</ul>
+			</div>
+
+			<div class="card t3">
+				<span class="card-icon">⚡</span>
+				<div class="card-title">Inference Optimization <span class="badge hot">🔥 hot</span>
+				</div>
+				<div class="card-subtitle">Cuts costs, speeds products</div>
+				<ul class="skill-list">
+					<li><strong>Quantization</strong> — GPTQ, AWQ, GGUF, INT4/INT8</li>
+					<li><strong>Speculative decoding</strong> — 2–4x throughput gains</li>
+					<li>KV cache management strategies</li>
+					<li>Continuous batching, PagedAttention (vLLM)</li>
+					<li>Model distillation — teacher-student</li>
+					<li>Pruning, structured sparsity</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<!-- ═══════════════════════════════════════════ -->
+		<!-- PHASE 7: CAREER EXECUTION -->
+		<!-- ═══════════════════════════════════════════ -->
+		<div class="phase-label">Phase 07 — Career Execution (Self-Taught Strategy)</div>
+
+		<div class="section-title">Getting Hired Without a Degree</div>
+		<p class="section-desc">The playbook that has actually worked. Portfolio > credentials. Proof >
+			promises.</p>
+
+		<div class="grid-2">
+
+			<div>
+				<div class="card-wide" style="border-color:rgba(0,255,178,0.15);margin-bottom:0">
+					<div class="card-title" style="font-size:16px;margin-bottom:16px">⚡ The
+						Self-Taught Hiring Funnel</div>
+					<div class="timeline">
+						<div class="timeline-item">
+							<div class="timeline-head">Months 1–3: Foundations Sprint</div>
+							<div class="timeline-time">// PHASE 1–2</div>
+							<div class="timeline-text">Python + Math + Classical ML. Build 3
+								clean projects. Get on GitHub daily.</div>
+						</div>
+						<div class="timeline-item">
+							<div class="timeline-head">Months 4–6: Deep Learning Core</div>
+							<div class="timeline-time">// PHASE 3</div>
+							<div class="timeline-text">PyTorch from scratch (Karpathy's
+								nanoGPT). 2 DL projects. Kaggle competitions.</div>
+						</div>
+						<div class="timeline-item">
+							<div class="timeline-head">Months 7–9: LLM Specialization</div>
+							<div class="timeline-time">// PHASE 4</div>
+							<div class="timeline-text">Fine-tune Llama. Build a RAG app.
+								Deploy a public agent. Become the LLM person.</div>
+						</div>
+						<div class="timeline-item">
+							<div class="timeline-head">Months 10–12: Production + Portfolio
+							</div>
+							<div class="timeline-time">// PHASE 5 + CAREER</div>
+							<div class="timeline-text">Ship a production-grade app. MLOps.
+								Write about it. Apply to 100+ remote roles.</div>
+						</div>
+						<div class="timeline-item">
+							<div class="timeline-head">Year 2+: Specialize & Compound</div>
+							<div class="timeline-time">// PHASE 6</div>
+							<div class="timeline-text">Deep expertise in 1–2 verticals.
+								Publish, speak, consult. $200k+ range unlocked.</div>
+						</div>
+						<div class="timeline-item">
+							<div class="timeline-head">Year 3+: Principal / Staff / Founding
+								Engineer</div>
+							<div class="timeline-time">// ELITE TIER</div>
+							<div class="timeline-text">System design for AI. Lead teams.
+								Founding engineer at AI startups. $300–500k+.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div style="display:flex;flex-direction:column;gap:12px">
+
+				<div class="card">
+					<div class="card-title">🗂️ Portfolio That Gets Interviews</div>
+					<ul class="skill-list" style="margin-top:12px">
+						<li>Fine-tuned a domain-specific LLM (legal, medical, code)</li>
+						<li>Production RAG system with evals and monitoring</li>
+						<li>Open-source contribution to a major ML library</li>
+						<li>Kaggle: top 10% in 2+ competitions</li>
+						<li>Technical blog: 5+ posts on real problems you solved</li>
+						<li>Deployed API serving an actual ML model (not just notebooks)</li>
+						<li>Replicated a paper from scratch — proves research chops</li>
+					</ul>
+				</div>
+
+				<div class="card">
+					<div class="card-title">🌐 Where to Learn for Free</div>
+					<ul class="skill-list" style="margin-top:12px">
+						<li><strong>fast.ai</strong> — best practical DL course on earth</li>
+						<li><strong>Andrej Karpathy's YouTube</strong> — zero to hero series
+						</li>
+						<li><strong>HuggingFace Course</strong> — NLP & LLMs</li>
+						<li><strong>deeplearning.ai</strong> — Andrew Ng + LLM courses</li>
+						<li><strong>Papers With Code</strong> — track SOTA, read papers</li>
+						<li><strong>r/MachineLearning</strong> — community + paper discussions
+						</li>
+						<li><strong>Full Stack Deep Learning</strong> — production ML focus</li>
+						<li><strong>Karpathy's micrograd/nanoGPT</strong> — required watching
+						</li>
+					</ul>
+				</div>
+
+				<div class="callout" style="margin-bottom:0">
+					<div class="callout-icon">🎯</div>
+					<div class="callout-text">
+						<strong>The No-Degree Hiring Secret:</strong> Companies hire based on
+						demonstrated ability, not credentials. One impressive public project
+						that solves a real problem gets more callbacks than any certification.
+						Build in public on GitHub and X/Twitter. Let your work speak before you
+						ever apply.
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- ═══════════════════════════════════════════ -->
+		<!-- HIGH-PAYING ROLES -->
+		<!-- ═══════════════════════════════════════════ -->
+		<div class="phase-label">Target Roles — Remote, High-Paying, Future-Proof</div>
+
+		<div class="section-title">Where You're Headed</div>
+		<p class="section-desc">These roles have the highest combination of compensation, demand growth, and
+			remote availability.</p>
+
+		<div class="roles-grid">
+
+			<div class="role-card">
+				<div class="role-title">LLM/GenAI Engineer</div>
+				<div class="role-salary">$160k – $280k+</div>
+				<div class="role-desc">Fine-tuning, RAG systems, LLM product integration. Most in-demand
+					AI role right now. Nearly all remote.</div>
+			</div>
+
+			<div class="role-card">
+				<div class="role-title">ML Engineer (Production)</div>
+				<div class="role-salary">$150k – $250k+</div>
+				<div class="role-desc">Design, train, and ship ML systems at scale. Bridge between
+					research and product. High leverage role.</div>
+			</div>
+
+			<div class="role-card">
+				<div class="role-title">AI Research Scientist</div>
+				<div class="role-salary">$180k – $400k+</div>
+				<div class="role-desc">Novel model research, papers, pushing SOTA. Requires deep
+					expertise + publication record. Top of the pay scale.</div>
+			</div>
+
+			<div class="role-card">
+				<div class="role-title">MLOps / AI Platform Engineer</div>
+				<div class="role-salary">$140k – $220k+</div>
+				<div class="role-desc">Build infrastructure enabling AI teams. CI/CD for ML, feature
+					stores, training clusters. Recession-resistant.</div>
+			</div>
+
+			<div class="role-card">
+				<div class="role-title">AI Safety / Alignment Researcher</div>
+				<div class="role-salary">$160k – $350k+</div>
+				<div class="role-desc">Most important, most funded work in AI. Anthropic, DeepMind,
+					OpenAI, ARC. Long-term career moat.</div>
+			</div>
+
+			<div class="role-card">
+				<div class="role-title">Founding AI Engineer (Startup)</div>
+				<div class="role-salary">$120k + equity 🚀</div>
+				<div class="role-desc">Highest upside. Wear all hats. 0→1 product. Equity in the right
+					company can be life-changing. Remote-native.</div>
+			</div>
+
+			<div class="role-card">
+				<div class="role-title">AI Consultant / Freelancer</div>
+				<div class="role-salary">$150–$500/hr</div>
+				<div class="role-desc">Highest hourly rate possible. Build your own client list. Work
+					from anywhere. Fully location-independent.</div>
+			</div>
+
+			<div class="role-card">
+				<div class="role-title">Data Scientist (Senior/Staff)</div>
+				<div class="role-salary">$130k – $200k+</div>
+				<div class="role-desc">Easiest entry point. Analytics + ML modeling. Bridge to pure AI
+					engineering roles. Strong remote market.</div>
+			</div>
+
+		</div>
+
+		<!-- FINAL CALLOUT -->
+		<div
+			style="margin-top:40px;border:1px solid rgba(123,97,255,0.2);background:rgba(123,97,255,0.04);border-radius:4px;padding:28px 32px;position:relative;overflow:hidden">
+			<div
+				style="position:absolute;right:-20px;top:-20px;font-size:120px;opacity:0.04;pointer-events:none">
+				🚀</div>
+			<div
+				style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--accent2);margin-bottom:12px;text-transform:uppercase">
+				// Final Principle</div>
+			<div
+				style="font-family:'Syne',sans-serif;font-weight:800;font-size:22px;color:#fff;margin-bottom:12px;letter-spacing:-0.02em">
+				The degree is not the barrier. <span style="color:var(--accent1)">Proof of work is
+					everything.</span></div>
+			<div style="font-size:14px;color:var(--muted);line-height:1.7;max-width:800px">
+				The AI field is uniquely meritocratic — it moves so fast that academia can't keep up,
+				and companies care about what you can build today.
+				Every skill on this list was learned by someone self-taught. The path is: <strong
+					style="color:#fff">learn deeply → build publicly → document relentlessly → apply
+					specifically</strong>.
+				Consistency over 12–18 months outperforms a 4-year degree at a median school. The
+				barrier to entry has never been lower. Start now.
+			</div>
+		</div>
+
+	</div>
+
+	<footer>
+		<div>SELF-TAUGHT AI/ML ENGINEER ROADMAP · 2025–2027 · BUILD IN PUBLIC · SHIP REAL THINGS</div>
+		<div style="margin-top:8px;opacity:0.5">skills compound · reputation compounds · start today</div>
+	</footer>
+
+</body>
+
+</html>
