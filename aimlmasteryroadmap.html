@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AI/ML Self-Taught Engineer Mastery Roadmap</title>
+	<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+		rel="stylesheet">
+	<style>
+		:root {
+			--bg: #050810;
+			--surface: #0c1220;
+			--surface2: #111827;
+			--border: #1e2d45;
+			--accent1: #00e5ff;
+			--accent2: #7c3aed;
+			--accent3: #f59e0b;
+			--accent4: #10b981;
+			--accent5: #f43f5e;
+			--accent6: #8b5cf6;
+			--text: #e2e8f0;
+			--muted: #64748b;
+			--bright: #ffffff;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			background: var(--bg);
+			color: var(--text);
+			font-family: 'DM Sans', sans-serif;
+			line-height: 1.6;
+			overflow-x: hidden;
+		}
+
+		/* Animated background grid */
+		body::before {
+			content: '';
+			position: fixed;
+			inset: 0;
+			background-image:
+				linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+			background-size: 60px 60px;
+			pointer-events: none;
+			z-index: 0;
+		}
+
+		/* Radial glow blobs */
+		body::after {
+			content: '';
+			position: fixed;
+			top: -200px;
+			left: -200px;
+			width: 600px;
+			height: 600px;
+			background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
+			pointer-events: none;
+			z-index: 0;
+			animation: drift 20s ease-in-out infinite alternate;
+		}
+
+		@keyframes drift {
+			0% {
+				transform: translate(0, 0);
+			}
+
+			100% {
+				transform: translate(200px, 300px);
+			}
+		}
+
+		.container {
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 0 24px;
+			position: relative;
+			z-index: 1;
+		}
+
+		/* ── HERO ── */
+		.hero {
+			padding: 80px 0 60px;
+			text-align: center;
+			position: relative;
+		}
+
+		.hero-eyebrow {
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			letter-spacing: 0.3em;
+			color: var(--accent1);
+			text-transform: uppercase;
+			margin-bottom: 20px;
+			display: inline-block;
+			border: 1px solid rgba(0, 229, 255, 0.3);
+			padding: 6px 16px;
+			border-radius: 2px;
+		}
+
+		.hero h1 {
+			font-family: 'Syne', sans-serif;
+			font-size: clamp(36px, 6vw, 72px);
+			font-weight: 800;
+			line-height: 1.05;
+			letter-spacing: -0.02em;
+			margin-bottom: 24px;
+			color: var(--bright);
+		}
+
+		.hero h1 span {
+			background: linear-gradient(135deg, var(--accent1), var(--accent6));
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+
+		.hero-sub {
+			font-size: 16px;
+			color: var(--muted);
+			max-width: 600px;
+			margin: 0 auto 40px;
+			font-weight: 300;
+		}
+
+		.stats-bar {
+			display: flex;
+			justify-content: center;
+			gap: 48px;
+			flex-wrap: wrap;
+			padding: 24px 0;
+			border-top: 1px solid var(--border);
+			border-bottom: 1px solid var(--border);
+			margin-bottom: 80px;
+		}
+
+		.stat {
+			text-align: center;
+		}
+
+		.stat-num {
+			font-family: 'Space Mono', monospace;
+			font-size: 28px;
+			font-weight: 700;
+			color: var(--accent1);
+			display: block;
+		}
+
+		.stat-label {
+			font-size: 11px;
+			color: var(--muted);
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+		}
+
+		/* ── PHASE SECTIONS ── */
+		.phase {
+			margin-bottom: 64px;
+		}
+
+		.phase-header {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			margin-bottom: 28px;
+			padding-bottom: 16px;
+			border-bottom: 1px solid var(--border);
+		}
+
+		.phase-number {
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			color: var(--muted);
+			min-width: 60px;
+		}
+
+		.phase-title {
+			font-family: 'Syne', sans-serif;
+			font-size: clamp(20px, 3vw, 28px);
+			font-weight: 700;
+			color: var(--bright);
+		}
+
+		.phase-tag {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			padding: 4px 10px;
+			border-radius: 2px;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			margin-left: auto;
+		}
+
+		.tag-foundation {
+			background: rgba(0, 229, 255, 0.1);
+			color: var(--accent1);
+			border: 1px solid rgba(0, 229, 255, 0.2);
+		}
+
+		.tag-core {
+			background: rgba(124, 58, 237, 0.15);
+			color: #a78bfa;
+			border: 1px solid rgba(124, 58, 237, 0.3);
+		}
+
+		.tag-advanced {
+			background: rgba(245, 158, 11, 0.1);
+			color: var(--accent3);
+			border: 1px solid rgba(245, 158, 11, 0.2);
+		}
+
+		.tag-specialized {
+			background: rgba(16, 185, 129, 0.1);
+			color: var(--accent4);
+			border: 1px solid rgba(16, 185, 129, 0.2);
+		}
+
+		.tag-career {
+			background: rgba(244, 63, 94, 0.1);
+			color: var(--accent5);
+			border: 1px solid rgba(244, 63, 94, 0.2);
+		}
+
+		/* ── RESOURCE GRID ── */
+		.resource-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+			gap: 16px;
+		}
+
+		.resource-card {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 4px;
+			padding: 20px;
+			position: relative;
+			overflow: hidden;
+			transition: border-color 0.2s, transform 0.2s;
+		}
+
+		.resource-card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 2px;
+			opacity: 0;
+			transition: opacity 0.2s;
+		}
+
+		.resource-card:hover {
+			transform: translateY(-2px);
+			border-color: rgba(0, 229, 255, 0.3);
+		}
+
+		.resource-card:hover::before {
+			opacity: 1;
+		}
+
+		.color-1::before {
+			background: linear-gradient(90deg, var(--accent1), var(--accent6));
+		}
+
+		.color-2::before {
+			background: linear-gradient(90deg, var(--accent6), var(--accent5));
+		}
+
+		.color-3::before {
+			background: linear-gradient(90deg, var(--accent3), var(--accent4));
+		}
+
+		.color-4::before {
+			background: linear-gradient(90deg, var(--accent4), var(--accent1));
+		}
+
+		.color-5::before {
+			background: linear-gradient(90deg, var(--accent5), var(--accent3));
+		}
+
+		.card-type {
+			font-family: 'Space Mono', monospace;
+			font-size: 9px;
+			text-transform: uppercase;
+			letter-spacing: 0.2em;
+			color: var(--muted);
+			margin-bottom: 10px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.type-dot {
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			flex-shrink: 0;
+		}
+
+		.dot-free {
+			background: var(--accent4);
+		}
+
+		.dot-paid {
+			background: var(--accent3);
+		}
+
+		.dot-book {
+			background: var(--accent6);
+		}
+
+		.dot-practice {
+			background: var(--accent5);
+		}
+
+		.dot-community {
+			background: var(--accent1);
+		}
+
+		.card-title {
+			font-family: 'Syne', sans-serif;
+			font-size: 15px;
+			font-weight: 700;
+			color: var(--bright);
+			margin-bottom: 6px;
+		}
+
+		.card-url {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: var(--accent1);
+			opacity: 0.7;
+			margin-bottom: 10px;
+			word-break: break-all;
+		}
+
+		.card-desc {
+			font-size: 13px;
+			color: var(--muted);
+			line-height: 1.5;
+			margin-bottom: 12px;
+		}
+
+		.card-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 6px;
+		}
+
+		.ctag {
+			font-size: 10px;
+			font-family: 'Space Mono', monospace;
+			padding: 3px 8px;
+			background: var(--surface2);
+			border: 1px solid var(--border);
+			color: var(--muted);
+			border-radius: 2px;
+		}
+
+		/* ── PRIORITY BADGE ── */
+		.priority-badge {
+			position: absolute;
+			top: 16px;
+			right: 16px;
+			font-family: 'Space Mono', monospace;
+			font-size: 9px;
+			font-weight: 700;
+			letter-spacing: 0.1em;
+		}
+
+		.p-essential {
+			color: var(--accent5);
+			background: rgba(244, 63, 94, 0.1);
+			border: 1px solid rgba(244, 63, 94, 0.3);
+			padding: 3px 8px;
+			border-radius: 2px;
+		}
+
+		.p-important {
+			color: var(--accent3);
+			background: rgba(245, 158, 11, 0.1);
+			border: 1px solid rgba(245, 158, 11, 0.2);
+			padding: 3px 8px;
+			border-radius: 2px;
+		}
+
+		/* ── WIDE CARDS ── */
+		.resource-grid-wide {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+
+		.resource-card-wide {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 4px;
+			padding: 20px 24px;
+			display: grid;
+			grid-template-columns: 200px 1fr;
+			gap: 24px;
+			align-items: start;
+			position: relative;
+			overflow: hidden;
+			transition: border-color 0.2s, transform 0.2s;
+		}
+
+		.resource-card-wide:hover {
+			transform: translateY(-2px);
+			border-color: rgba(0, 229, 255, 0.3);
+		}
+
+		.resource-card-wide::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 2px;
+			opacity: 0;
+			transition: opacity 0.2s;
+		}
+
+		.resource-card-wide:hover::before {
+			opacity: 1;
+		}
+
+		.card-left {}
+
+		.card-right {}
+
+		/* ── ROADMAP PATH ── */
+		.roadmap-visual {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 4px;
+			padding: 32px;
+			margin-bottom: 64px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.roadmap-visual::after {
+			content: 'LEARNING PATH';
+			position: absolute;
+			top: 16px;
+			right: 20px;
+			font-family: 'Space Mono', monospace;
+			font-size: 9px;
+			letter-spacing: 0.3em;
+			color: var(--border);
+		}
+
+		.roadmap-steps {
+			display: flex;
+			align-items: flex-start;
+			gap: 0;
+			overflow-x: auto;
+			padding-bottom: 8px;
+		}
+
+		.roadmap-step {
+			flex: 1;
+			min-width: 140px;
+			text-align: center;
+			position: relative;
+		}
+
+		.roadmap-step::after {
+			content: '→';
+			position: absolute;
+			right: -10px;
+			top: 20px;
+			color: var(--border);
+			font-size: 18px;
+			z-index: 2;
+		}
+
+		.roadmap-step:last-child::after {
+			display: none;
+		}
+
+		.step-circle {
+			width: 44px;
+			height: 44px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 10px;
+			font-family: 'Space Mono', monospace;
+			font-size: 13px;
+			font-weight: 700;
+		}
+
+		.step-name {
+			font-size: 11px;
+			color: var(--muted);
+			line-height: 1.4;
+			padding: 0 8px;
+		}
+
+		.step-time {
+			font-family: 'Space Mono', monospace;
+			font-size: 9px;
+			margin-top: 6px;
+			opacity: 0.6;
+		}
+
+		/* ── SALARY TABLE ── */
+		.salary-section {
+			margin-bottom: 64px;
+		}
+
+		.salary-table {
+			width: 100%;
+			border-collapse: collapse;
+			font-size: 13px;
+		}
+
+		.salary-table thead tr {
+			background: var(--surface2);
+			border-bottom: 2px solid var(--border);
+		}
+
+		.salary-table th {
+			padding: 14px 16px;
+			text-align: left;
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			color: var(--muted);
+		}
+
+		.salary-table td {
+			padding: 14px 16px;
+			border-bottom: 1px solid var(--border);
+			vertical-align: top;
+		}
+
+		.salary-table tbody tr:hover {
+			background: rgba(255, 255, 255, 0.02);
+		}
+
+		.salary-role {
+			font-weight: 500;
+			color: var(--bright);
+			font-size: 14px;
+		}
+
+		.salary-amount {
+			font-family: 'Space Mono', monospace;
+			color: var(--accent4);
+			font-size: 13px;
+		}
+
+		.demand-bar {
+			height: 6px;
+			border-radius: 3px;
+			background: var(--surface2);
+			min-width: 120px;
+			overflow: hidden;
+		}
+
+		.demand-fill {
+			height: 100%;
+			border-radius: 3px;
+			background: linear-gradient(90deg, var(--accent4), var(--accent1));
+		}
+
+		/* ── SECTION DIVIDER ── */
+		.section-divider {
+			border: none;
+			border-top: 1px solid var(--border);
+			margin: 80px 0;
+			position: relative;
+		}
+
+		.section-divider::before {
+			content: attr(data-label);
+			position: absolute;
+			top: -10px;
+			left: 50%;
+			transform: translateX(-50%);
+			background: var(--bg);
+			padding: 0 16px;
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			letter-spacing: 0.3em;
+			color: var(--muted);
+			text-transform: uppercase;
+		}
+
+		/* ── FOOTER ── */
+		.footer {
+			text-align: center;
+			padding: 48px 0 64px;
+			border-top: 1px solid var(--border);
+			margin-top: 80px;
+		}
+
+		.footer-text {
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			color: var(--muted);
+			letter-spacing: 0.1em;
+		}
+
+		/* ── CALLOUT BOX ── */
+		.callout {
+			border-left: 3px solid var(--accent1);
+			background: rgba(0, 229, 255, 0.04);
+			padding: 16px 20px;
+			margin-bottom: 28px;
+			border-radius: 0 4px 4px 0;
+		}
+
+		.callout-title {
+			font-family: 'Syne', sans-serif;
+			font-size: 13px;
+			font-weight: 700;
+			color: var(--accent1);
+			margin-bottom: 6px;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+		}
+
+		.callout p {
+			font-size: 13px;
+			color: var(--muted);
+		}
+
+		.callout.warn {
+			border-color: var(--accent3);
+			background: rgba(245, 158, 11, 0.04);
+		}
+
+		.callout.warn .callout-title {
+			color: var(--accent3);
+		}
+
+		.callout.success {
+			border-color: var(--accent4);
+			background: rgba(16, 185, 129, 0.04);
+		}
+
+		.callout.success .callout-title {
+			color: var(--accent4);
+		}
+
+		@media (max-width: 680px) {
+			.resource-card-wide {
+				grid-template-columns: 1fr;
+			}
+
+			.stats-bar {
+				gap: 28px;
+			}
+
+			.roadmap-steps {
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.roadmap-step::after {
+				display: none;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<!-- HERO -->
+		<div class="hero">
+			<span class="hero-eyebrow">Self-Taught · Zero Degree · Maximum Income</span>
+			<h1>The <span>AI/ML Engineer</span><br>Mastery Roadmap</h1>
+			<p class="hero-sub">Every essential resource, ranked by impact — built to get you hired at the
+				highest-paid, most future-proof remote AI roles without a degree.</p>
+		</div>
+
+		<div class="stats-bar">
+			<div class="stat">
+				<span class="stat-num">$180K+</span>
+				<span class="stat-label">Median Senior ML Eng</span>
+			</div>
+			<div class="stat">
+				<span class="stat-num">40%</span>
+				<span class="stat-label">AI Job Growth / Year</span>
+			</div>
+			<div class="stat">
+				<span class="stat-num">70%</span>
+				<span class="stat-label">Remote-Eligible AI Roles</span>
+			</div>
+			<div class="stat">
+				<span class="stat-num">12–18mo</span>
+				<span class="stat-label">Avg Time to First Hire</span>
+			</div>
+		</div>
+
+		<!-- LEARNING PATH VISUAL -->
+		<div class="roadmap-visual">
+			<div class="roadmap-steps">
+				<div class="roadmap-step">
+					<div class="step-circle"
+						style="background:rgba(0,229,255,0.15);color:var(--accent1);border:1px solid rgba(0,229,255,0.3);">
+						01</div>
+					<div class="step-name">Math &amp;<br>Python Basics</div>
+					<div class="step-time" style="color:var(--accent1);">0–3 mo</div>
+				</div>
+				<div class="roadmap-step">
+					<div class="step-circle"
+						style="background:rgba(124,58,237,0.15);color:#a78bfa;border:1px solid rgba(124,58,237,0.3);">
+						02</div>
+					<div class="step-name">ML Core<br>Algorithms</div>
+					<div class="step-time" style="color:#a78bfa;">3–6 mo</div>
+				</div>
+				<div class="roadmap-step">
+					<div class="step-circle"
+						style="background:rgba(245,158,11,0.15);color:var(--accent3);border:1px solid rgba(245,158,11,0.3);">
+						03</div>
+					<div class="step-name">Deep Learning<br>&amp; NLP</div>
+					<div class="step-time" style="color:var(--accent3);">6–9 mo</div>
+				</div>
+				<div class="roadmap-step">
+					<div class="step-circle"
+						style="background:rgba(16,185,129,0.15);color:var(--accent4);border:1px solid rgba(16,185,129,0.3);">
+						04</div>
+					<div class="step-name">LLMs, Agents<br>&amp; MLOps</div>
+					<div class="step-time" style="color:var(--accent4);">9–13 mo</div>
+				</div>
+				<div class="roadmap-step">
+					<div class="step-circle"
+						style="background:rgba(244,63,94,0.15);color:var(--accent5);border:1px solid rgba(244,63,94,0.3);">
+						05</div>
+					<div class="step-name">Portfolio &amp;<br>Job Attack</div>
+					<div class="step-time" style="color:var(--accent5);">13–18 mo</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ═══════════════════════════════════════════
+       PHASE 1 — FOUNDATIONS
+  ═══════════════════════════════════════════ -->
+		<div class="phase">
+			<div class="phase-header">
+				<span class="phase-number">PHASE 01</span>
+				<h2 class="phase-title">Mathematical & Python Foundations</h2>
+				<span class="phase-tag tag-foundation">Foundation</span>
+			</div>
+
+			<div class="callout">
+				<div class="callout-title">⚡ Why This Comes First</div>
+				<p>Skip the math and you'll be a prompt engineer at best. Linear algebra, calculus,
+					probability, and stats ARE the engine under every model. Python is the universal
+					language of AI.</p>
+			</div>
+
+			<div class="resource-grid">
+
+				<div class="resource-card color-1">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-free"></span> Free Course</div>
+					<div class="card-title">3Blue1Brown — Essence of Linear Algebra</div>
+					<div class="card-url">youtube.com/@3blue1brown</div>
+					<div class="card-desc">The single best visual intuition-builder for linear
+						algebra. Watch before touching NumPy. Series also covers calculus and
+						neural networks brilliantly.</div>
+					<div class="card-tags"><span class="ctag">Linear Algebra</span><span
+							class="ctag">Visual</span><span class="ctag">Free</span></div>
+				</div>
+
+				<div class="resource-card color-2">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-paid"></span> Course</div>
+					<div class="card-title">Mathematics for Machine Learning (Coursera / Imperial
+						College)</div>
+					<div class="card-url">coursera.org/specializations/mathematics-machine-learning
+					</div>
+					<div class="card-desc">3-course specialization covering linear algebra,
+						multivariate calculus, and PCA. The most direct math-for-ML curriculum
+						available online. Audit free.</div>
+					<div class="card-tags"><span class="ctag">Calculus</span><span
+							class="ctag">PCA</span><span class="ctag">Linear Algebra</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-3">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-book"></span> Book</div>
+					<div class="card-title">Python for Data Analysis — Wes McKinney</div>
+					<div class="card-url">wesmckinney.com/book</div>
+					<div class="card-desc">Written by the creator of Pandas. Definitive reference
+						for NumPy, Pandas, and data wrangling in Python. The data manipulation
+						bible for ML practitioners.</div>
+					<div class="card-tags"><span class="ctag">Python</span><span
+							class="ctag">Pandas</span><span class="ctag">NumPy</span></div>
+				</div>
+
+				<div class="resource-card color-4">
+					<span class="priority-badge p-important">IMPORTANT</span>
+					<div class="card-type"><span class="type-dot dot-free"></span> Free Course</div>
+					<div class="card-title">fast.ai — Practical Deep Learning (Part 1)</div>
+					<div class="card-url">course.fast.ai</div>
+					<div class="card-desc">Top-down learning philosophy — run models first,
+						understand later. Enormously practical. Used by thousands of self-taught
+						engineers to land first ML jobs.</div>
+					<div class="card-tags"><span class="ctag">Python</span><span
+							class="ctag">PyTorch</span><span class="ctag">Practical</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-5">
+					<div class="card-type"><span class="type-dot dot-free"></span> Free Platform
+					</div>
+					<div class="card-title">Khan Academy — Probability & Statistics</div>
+					<div class="card-url">khanacademy.org</div>
+					<div class="card-desc">Bayesian thinking, distributions, hypothesis testing, and
+						statistical inference. Free, structured, and the fastest way to close
+						stats gaps before ML study.</div>
+					<div class="card-tags"><span class="ctag">Statistics</span><span
+							class="ctag">Probability</span><span
+							class="ctag">Bayesian</span></div>
+				</div>
+
+				<div class="resource-card color-1">
+					<div class="card-type"><span class="type-dot dot-practice"></span> Practice
+						Platform</div>
+					<div class="card-title">LeetCode (Python focus) + NeetCode.io</div>
+					<div class="card-url">leetcode.com · neetcode.io</div>
+					<div class="card-desc">NeetCode's 150 and 300 lists are the most efficient
+						coding interview prep. ML roles at top companies still require DSA. Do
+						concurrently with ML learning.</div>
+					<div class="card-tags"><span class="ctag">DSA</span><span
+							class="ctag">Interviews</span><span class="ctag">Python</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<hr class="section-divider" data-label="phase 02">
+
+		<!-- ═══════════════════════════════════════════
+       PHASE 2 — ML CORE
+  ═══════════════════════════════════════════ -->
+		<div class="phase">
+			<div class="phase-header">
+				<span class="phase-number">PHASE 02</span>
+				<h2 class="phase-title">Core Machine Learning</h2>
+				<span class="phase-tag tag-core">Core</span>
+			</div>
+
+			<div class="callout warn">
+				<div class="callout-title">⚠ Don't Skip Classical ML</div>
+				<p>Every senior ML interview tests classical ML deeply. Decision trees, SVMs, ensembles,
+					and bias-variance tradeoffs are table stakes. Build this layer before diving
+					into deep learning.</p>
+			</div>
+
+			<div class="resource-grid">
+
+				<div class="resource-card color-2">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-free"></span> Free Course</div>
+					<div class="card-title">Andrew Ng — Machine Learning Specialization (Coursera)
+					</div>
+					<div class="card-url">coursera.org/specializations/machine-learning-introduction
+					</div>
+					<div class="card-desc">The most-taken ML course on Earth. Updated in 2022 with
+						TensorFlow/scikit-learn. Non-negotiable starting point for classical ML.
+						Andrew Ng's pedagogy is unmatched. Audit free.</div>
+					<div class="card-tags"><span class="ctag">Classical ML</span><span
+							class="ctag">scikit-learn</span><span class="ctag">Gold
+							Standard</span></div>
+				</div>
+
+				<div class="resource-card color-3">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-book"></span> Book</div>
+					<div class="card-title">Hands-On Machine Learning (Aurélien Géron)</div>
+					<div class="card-url">oreilly.com — "Hands-On ML"</div>
+					<div class="card-desc">The most practical ML book in existence. Scikit-learn +
+						Keras + TensorFlow. Every chapter has code. 3rd edition covers
+						transformer fine-tuning. The book you read twice.</div>
+					<div class="card-tags"><span class="ctag">Scikit-learn</span><span
+							class="ctag">TensorFlow</span><span class="ctag">Keras</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-4">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-practice"></span> Competition
+						Platform</div>
+					<div class="card-title">Kaggle — Competitions + Learn Courses</div>
+					<div class="card-url">kaggle.com</div>
+					<div class="card-desc">Kaggle is the hiring signal. Grandmaster status opens
+						doors at top AI labs. Free GPU, public notebooks, and free micro-courses
+						in Pandas, ML, and feature engineering.</div>
+					<div class="card-tags"><span class="ctag">Competitions</span><span
+							class="ctag">Free GPU</span><span class="ctag">Portfolio</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-5">
+					<div class="card-type"><span class="type-dot dot-book"></span> Book / Reference
+					</div>
+					<div class="card-title">The Elements of Statistical Learning (Hastie et al.)
+					</div>
+					<div class="card-url">hastie.su.domains/ElemStatLearn (FREE PDF)</div>
+					<div class="card-desc">The academic bible of ML theory. Dense but free. Not a
+						starting point — read targeted chapters as theory for algorithms you're
+						using. Chapter 10 (boosting) is legendary.</div>
+					<div class="card-tags"><span class="ctag">Theory</span><span
+							class="ctag">Statistics</span><span class="ctag">Free PDF</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-1">
+					<div class="card-type"><span class="type-dot dot-paid"></span> Course</div>
+					<div class="card-title">StatQuest with Josh Starmer (YouTube)</div>
+					<div class="card-url">youtube.com/@statquest</div>
+					<div class="card-desc">Every ML algorithm explained with crystal clarity from
+						first principles. Random forests, gradient boosting, PCA, ROC curves —
+						all free, all brilliant. Perfect companion to any textbook.</div>
+					<div class="card-tags"><span class="ctag">Statistics</span><span
+							class="ctag">Algorithms</span><span class="ctag">Free</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-2">
+					<div class="card-type"><span class="type-dot dot-practice"></span> Library</div>
+					<div class="card-title">scikit-learn Official Documentation</div>
+					<div class="card-url">scikit-learn.org/stable</div>
+					<div class="card-desc">Read the user guide end-to-end. The examples section
+						alone is an ML education. Understanding sklearn's API design teaches you
+						how ML workflows are actually structured in production.</div>
+					<div class="card-tags"><span class="ctag">scikit-learn</span><span
+							class="ctag">API</span><span class="ctag">Pipelines</span></div>
+				</div>
+
+			</div>
+		</div>
+
+		<hr class="section-divider" data-label="phase 03">
+
+		<!-- ═══════════════════════════════════════════
+       PHASE 3 — DEEP LEARNING & NLP
+  ═══════════════════════════════════════════ -->
+		<div class="phase">
+			<div class="phase-header">
+				<span class="phase-number">PHASE 03</span>
+				<h2 class="phase-title">Deep Learning, NLP & Computer Vision</h2>
+				<span class="phase-tag tag-advanced">Advanced</span>
+			</div>
+
+			<div class="resource-grid">
+
+				<div class="resource-card color-3">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-paid"></span> Course</div>
+					<div class="card-title">Andrew Ng — Deep Learning Specialization (Coursera)
+					</div>
+					<div class="card-url">coursera.org/specializations/deep-learning</div>
+					<div class="card-desc">5-course series. CNNs, RNNs, optimization, hyperparameter
+						tuning, and sequence models. The foundational deep learning curriculum.
+						Taught by the godfather of AI education.</div>
+					<div class="card-tags"><span class="ctag">CNNs</span><span
+							class="ctag">RNNs</span><span class="ctag">Backprop</span></div>
+				</div>
+
+				<div class="resource-card color-4">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-free"></span> Free Course</div>
+					<div class="card-title">Andrej Karpathy — Neural Networks: Zero to Hero</div>
+					<div class="card-url">youtube.com/@AndrejKarpathy</div>
+					<div class="card-desc">Build GPT from scratch in pure Python. Build micrograd.
+						Build makemore. No one explains DL intuition better. Former Tesla AI
+						Director, ex-OpenAI. Watch every video.</div>
+					<div class="card-tags"><span class="ctag">Transformers</span><span
+							class="ctag">GPT</span><span class="ctag">From Scratch</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-5">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-book"></span> Paper / Guide
+					</div>
+					<div class="card-title">"Attention Is All You Need" (Vaswani et al., 2017)</div>
+					<div class="card-url">arxiv.org/abs/1706.03762</div>
+					<div class="card-desc">The transformer paper. Read it after Karpathy's GPT
+						series. Understand every equation. This 11-page paper underpins
+						literally all of modern AI. Non-negotiable primary source.</div>
+					<div class="card-tags"><span class="ctag">Transformers</span><span
+							class="ctag">Attention</span><span
+							class="ctag">Foundational</span></div>
+				</div>
+
+				<div class="resource-card color-1">
+					<div class="card-type"><span class="type-dot dot-free"></span> Free Platform
+					</div>
+					<div class="card-title">Hugging Face — Courses & Transformers Library</div>
+					<div class="card-url">huggingface.co/learn</div>
+					<div class="card-desc">NLP Course, Audio Course, RL Course — all free. Then
+						master the Transformers and Diffusers libraries. HuggingFace is the de
+						facto standard for model deployment in industry.</div>
+					<div class="card-tags"><span class="ctag">NLP</span><span
+							class="ctag">Transformers</span><span
+							class="ctag">Fine-tuning</span></div>
+				</div>
+
+				<div class="resource-card color-2">
+					<div class="card-type"><span class="type-dot dot-book"></span> Book</div>
+					<div class="card-title">Deep Learning with PyTorch (Stevens, Antiga, Viehmann)
+					</div>
+					<div class="card-url">pytorch.org/deep-learning-with-pytorch</div>
+					<div class="card-desc">Free online. The official PyTorch book. Covers tensors,
+						autograd, CNN design, and deployment. PyTorch dominates research and is
+						rapidly taking enterprise share.</div>
+					<div class="card-tags"><span class="ctag">PyTorch</span><span
+							class="ctag">Autograd</span><span class="ctag">Free</span></div>
+				</div>
+
+				<div class="resource-card color-3">
+					<div class="card-type"><span class="type-dot dot-free"></span> Course</div>
+					<div class="card-title">CS231n — Stanford Convolutional Neural Networks</div>
+					<div class="card-url">cs231n.stanford.edu</div>
+					<div class="card-desc">Stanford's legendary CV course. Full lecture videos,
+						notes, and assignments on GitHub. The assignments (building backprop
+						from scratch) are career-defining. Completely free.</div>
+					<div class="card-tags"><span class="ctag">Computer Vision</span><span
+							class="ctag">CNNs</span><span class="ctag">Stanford</span></div>
+				</div>
+
+			</div>
+		</div>
+
+		<hr class="section-divider" data-label="phase 04">
+
+		<!-- ═══════════════════════════════════════════
+       PHASE 4 — LLMs, AGENTS & MLOPS
+  ═══════════════════════════════════════════ -->
+		<div class="phase">
+			<div class="phase-header">
+				<span class="phase-number">PHASE 04</span>
+				<h2 class="phase-title">LLMs, AI Agents & MLOps</h2>
+				<span class="phase-tag tag-specialized">Specialized</span>
+			</div>
+
+			<div class="callout success">
+				<div class="callout-title">🎯 The Money Is Here</div>
+				<p>LLM engineering, RAG systems, AI agents, and ML deployment are the highest-paid, most
+					in-demand skills in 2025 and beyond. Master this layer and you become
+					near-impossible to replace.</p>
+			</div>
+
+			<div class="resource-grid">
+
+				<div class="resource-card color-4">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-paid"></span> Course</div>
+					<div class="card-title">DeepLearning.AI — Short Courses (LLM Suite)</div>
+					<div class="card-url">deeplearning.ai/short-courses</div>
+					<div class="card-desc">LangChain for LLM App Dev, RAG, Finetuning LLMs, LLMOps,
+						Building AI Agents — all 1–2 hour focused courses co-built with OpenAI,
+						Mistral, and Meta. Many free.</div>
+					<div class="card-tags"><span class="ctag">LLMs</span><span
+							class="ctag">RAG</span><span class="ctag">Agents</span><span
+							class="ctag">LangChain</span></div>
+				</div>
+
+				<div class="resource-card color-5">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-free"></span> Documentation
+					</div>
+					<div class="card-title">LangChain + LlamaIndex Official Docs</div>
+					<div class="card-url">python.langchain.com · docs.llamaindex.ai</div>
+					<div class="card-desc">The two dominant frameworks for LLM applications. Build
+						RAG pipelines, agentic workflows, and tool-using AI. Both have excellent
+						tutorials. Being expert in these is immediately billable.</div>
+					<div class="card-tags"><span class="ctag">RAG</span><span
+							class="ctag">Agents</span><span class="ctag">Pipelines</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-1">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-free"></span> Documentation +
+						Course</div>
+					<div class="card-title">Weights & Biases — MLOps Course + Platform</div>
+					<div class="card-url">wandb.ai/fully-connected · wandb.ai/courses</div>
+					<div class="card-desc">Free MLOps courses on experiment tracking, model
+						registry, LLM fine-tuning, and CI/CD for ML. W&B itself is used by 1000s
+						of AI teams. Portfolio projects with W&B signal professionalism.</div>
+					<div class="card-tags"><span class="ctag">MLOps</span><span
+							class="ctag">Experiment Tracking</span><span
+							class="ctag">Free</span></div>
+				</div>
+
+				<div class="resource-card color-2">
+					<div class="card-type"><span class="type-dot dot-paid"></span> Course</div>
+					<div class="card-title">Full Stack LLM Bootcamp (The Full Stack)</div>
+					<div class="card-url">fullstackdeeplearning.com</div>
+					<div class="card-desc">Production-first LLM engineering: prompt design, RLHF,
+						vector DBs, deployment, and cost optimization. Written by Berkeley/CMU
+						PhDs for practitioners, not academics.</div>
+					<div class="card-tags"><span class="ctag">Production</span><span
+							class="ctag">RLHF</span><span class="ctag">Vector DB</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-3">
+					<div class="card-type"><span class="type-dot dot-free"></span> Free Resource
+					</div>
+					<div class="card-title">OpenAI Cookbook + Anthropic Prompt Engineering Guide
+					</div>
+					<div class="card-url">cookbook.openai.com · docs.anthropic.com</div>
+					<div class="card-desc">Official best practices from the model builders
+						themselves. RAG patterns, function calling, prompt injection defense,
+						multi-turn conversations. Read both end-to-end.</div>
+					<div class="card-tags"><span class="ctag">Prompt Engineering</span><span
+							class="ctag">API</span><span class="ctag">Patterns</span></div>
+				</div>
+
+				<div class="resource-card color-4">
+					<div class="card-type"><span class="type-dot dot-paid"></span> Platform</div>
+					<div class="card-title">Modal / Replicate / Hugging Face Spaces</div>
+					<div class="card-url">modal.com · replicate.com · huggingface.co/spaces</div>
+					<div class="card-desc">Deploy ML models to production without DevOps overhead.
+						Modal is increasingly the standard for ML engineers. Build + deploy a
+						real app and share the URL in every job application.</div>
+					<div class="card-tags"><span class="ctag">Deployment</span><span
+							class="ctag">Serverless</span><span
+							class="ctag">Portfolio</span></div>
+				</div>
+
+			</div>
+		</div>
+
+		<hr class="section-divider" data-label="phase 04b">
+
+		<!-- ═══════════════════════════════════════════
+       PHASE 4B — ADVANCED AI SPECIALIZATIONS
+  ═══════════════════════════════════════════ -->
+		<div class="phase">
+			<div class="phase-header">
+				<span class="phase-number">PHASE 04B</span>
+				<h2 class="phase-title">High-Value Specialization Tracks</h2>
+				<span class="phase-tag tag-specialized">Pick 1–2</span>
+			</div>
+
+			<div class="resource-grid">
+
+				<div class="resource-card color-5">
+					<div class="card-type"><span class="type-dot dot-free"></span> Track:
+						Reinforcement Learning</div>
+					<div class="card-title">Spinning Up in Deep RL (OpenAI) + Hugging Face RL Course
+					</div>
+					<div class="card-url">spinningup.openai.com ·
+						huggingface.co/learn/deep-rl-course</div>
+					<div class="card-desc">RL powers robotics, game AI, and the RLHF that trains
+						GPT-4. Spinning Up has clean implementations of PPO, SAC, DDPG. HF RL
+						Course is hands-on and free.</div>
+					<div class="card-tags"><span class="ctag">RL</span><span
+							class="ctag">RLHF</span><span class="ctag">PPO</span></div>
+				</div>
+
+				<div class="resource-card color-1">
+					<div class="card-type"><span class="type-dot dot-free"></span> Track: Generative
+						AI / Diffusion</div>
+					<div class="card-title">Diffusion Models Course (fast.ai + HuggingFace)</div>
+					<div class="card-url">huggingface.co/learn/diffusion-models-course</div>
+					<div class="card-desc">Stable Diffusion, DDPM, DDIM, ControlNet, and fine-tuning
+						with DreamBooth. Generative AI engineering is one of the fastest-growing
+						and highest-paid sub-fields.</div>
+					<div class="card-tags"><span class="ctag">Diffusion</span><span
+							class="ctag">Stable Diffusion</span><span
+							class="ctag">GenAI</span></div>
+				</div>
+
+				<div class="resource-card color-2">
+					<div class="card-type"><span class="type-dot dot-paid"></span> Track: ML Systems
+						/ Infrastructure</div>
+					<div class="card-title">Designing Machine Learning Systems (Chip Huyen)</div>
+					<div class="card-url">oreilly.com — "Designing ML Systems"</div>
+					<div class="card-desc">The production ML systems book. Data pipelines, feature
+						stores, model serving, monitoring, data distribution shifts. Senior ML
+						Engineers are expected to know all of this.</div>
+					<div class="card-tags"><span class="ctag">MLOps</span><span class="ctag">Systems
+							Design</span><span class="ctag">Production</span></div>
+				</div>
+
+				<div class="resource-card color-3">
+					<div class="card-type"><span class="type-dot dot-free"></span> Track: AI Safety
+						/ Alignment</div>
+					<div class="card-title">ARENA (Alignment Research Engineer Accelerator)</div>
+					<div class="card-url">arena.education</div>
+					<div class="card-desc">World-class curriculum covering transformers from
+						scratch, RL, and interpretability. Built for AI safety research careers.
+						Completing ARENA is a career-defining credential in frontier AI.</div>
+					<div class="card-tags"><span class="ctag">Alignment</span><span
+							class="ctag">Interpretability</span><span class="ctag">Frontier
+							AI</span></div>
+				</div>
+
+				<div class="resource-card color-4">
+					<div class="card-type"><span class="type-dot dot-free"></span> Track: Graph
+						Neural Networks</div>
+					<div class="card-title">CS224W — Stanford Machine Learning with Graphs</div>
+					<div class="card-url">web.stanford.edu/class/cs224w</div>
+					<div class="card-desc">GNNs power drug discovery, recommendation systems, and
+						fraud detection. Free Stanford lectures and slides. A genuine
+						differentiator in pharma, finance, and social platform roles.</div>
+					<div class="card-tags"><span class="ctag">GNNs</span><span class="ctag">Graph
+							ML</span><span class="ctag">Stanford</span></div>
+				</div>
+
+				<div class="resource-card color-5">
+					<div class="card-type"><span class="type-dot dot-free"></span> Track: Time
+						Series / Finance AI</div>
+					<div class="card-title">Nixtla Time Series Library + Forecasting: Principles &
+						Practice</div>
+					<div class="card-url">nixtla.io · otexts.com/fpp3 (FREE)</div>
+					<div class="card-desc">Time series is underserved in standard curricula but huge
+						in finance, energy, and logistics. FPP3 is free online. Nixtla
+						(StatsForecast, NeuralForecast) is the modern stack.</div>
+					<div class="card-tags"><span class="ctag">Time Series</span><span
+							class="ctag">Forecasting</span><span class="ctag">Finance</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<hr class="section-divider" data-label="papers + research">
+
+		<!-- ═══════════════════════════════════════════
+       PAPERS & RESEARCH
+  ═══════════════════════════════════════════ -->
+		<div class="phase">
+			<div class="phase-header">
+				<span class="phase-number">ONGOING</span>
+				<h2 class="phase-title">Essential Papers & Research Literacy</h2>
+				<span class="phase-tag tag-advanced">Research</span>
+			</div>
+
+			<div class="resource-grid">
+
+				<div class="resource-card color-1">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-free"></span> Paper Archive
+					</div>
+					<div class="card-title">Papers With Code</div>
+					<div class="card-url">paperswithcode.com</div>
+					<div class="card-desc">Every major ML paper linked to its implementation.
+						State-of-the-art benchmarks. Read one paper per week from your
+						specialization. Hiring managers test research awareness.</div>
+					<div class="card-tags"><span class="ctag">Research</span><span
+							class="ctag">SOTA</span><span
+							class="ctag">Implementations</span></div>
+				</div>
+
+				<div class="resource-card color-2">
+					<div class="card-type"><span class="type-dot dot-free"></span> Papers to Know
+					</div>
+					<div class="card-title">Must-Read Foundation Papers</div>
+					<div class="card-url">arxiv.org</div>
+					<div class="card-desc">Attention Is All You Need · BERT · GPT-2/3 · ResNet ·
+						Adam Optimizer · LoRA · InstructGPT (RLHF) · Constitutional AI · Mixture
+						of Experts · Chain-of-Thought Prompting. Know all of these.</div>
+					<div class="card-tags"><span class="ctag">BERT</span><span
+							class="ctag">LoRA</span><span class="ctag">GPT</span><span
+							class="ctag">RLHF</span></div>
+				</div>
+
+				<div class="resource-card color-3">
+					<div class="card-type"><span class="type-dot dot-community"></span> Newsletter
+					</div>
+					<div class="card-title">The Batch (DeepLearning.AI) + Sebastian Raschka's
+						Newsletter</div>
+					<div class="card-url">deeplearning.ai/the-batch · substack.com/@rasbt</div>
+					<div class="card-desc">Stay current on frontier research. Sebastian Raschka's
+						"Ahead of AI" is the best practitioner-focused research digest. Weekly
+						reading habit is non-negotiable for long-term career health.</div>
+					<div class="card-tags"><span class="ctag">Newsletter</span><span
+							class="ctag">Research</span><span class="ctag">Weekly</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<hr class="section-divider" data-label="tools + stack">
+
+		<!-- ═══════════════════════════════════════════
+       PRODUCTION TOOLING
+  ═══════════════════════════════════════════ -->
+		<div class="phase">
+			<div class="phase-header">
+				<span class="phase-number">STACK</span>
+				<h2 class="phase-title">Production Tooling You Must Know</h2>
+				<span class="phase-tag tag-core">Tooling</span>
+			</div>
+
+			<div class="resource-grid">
+
+				<div class="resource-card color-4">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-practice"></span> Cloud
+						Platform</div>
+					<div class="card-title">AWS / GCP / Azure ML (Pick one deeply)</div>
+					<div class="card-url">aws.amazon.com/sagemaker · cloud.google.com/vertex-ai
+					</div>
+					<div class="card-desc">SageMaker (AWS) and Vertex AI (GCP) are most used in
+						enterprise. Get one certification (AWS ML Specialty or GCP Professional
+						ML Engineer). $300 sign-on credits available on both.</div>
+					<div class="card-tags"><span class="ctag">Cloud</span><span
+							class="ctag">SageMaker</span><span class="ctag">Vertex AI</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-5">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-free"></span> Tool</div>
+					<div class="card-title">Docker + Git + DVC (Data Version Control)</div>
+					<div class="card-url">docker.com · git-scm.com · dvc.org</div>
+					<div class="card-desc">You must be able to containerize ML models, version data,
+						and push to remote registries. DVC is the Git for ML data and models.
+						Every production ML role requires all three.</div>
+					<div class="card-tags"><span class="ctag">Docker</span><span
+							class="ctag">Git</span><span class="ctag">DVC</span><span
+							class="ctag">CI/CD</span></div>
+				</div>
+
+				<div class="resource-card color-1">
+					<div class="card-type"><span class="type-dot dot-practice"></span> Framework
+					</div>
+					<div class="card-title">FastAPI + Gradio + Streamlit</div>
+					<div class="card-url">fastapi.tiangolo.com · gradio.app · streamlit.io</div>
+					<div class="card-desc">FastAPI for production API endpoints, Gradio for rapid ML
+						demos, Streamlit for interactive dashboards. Every portfolio project
+						should have a deployable interface built with these.</div>
+					<div class="card-tags"><span class="ctag">APIs</span><span
+							class="ctag">Demos</span><span class="ctag">Deployment</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-2">
+					<div class="card-type"><span class="type-dot dot-practice"></span> Database
+					</div>
+					<div class="card-title">Vector Databases: Pinecone / Weaviate / pgvector</div>
+					<div class="card-url">pinecone.io · weaviate.io · github.com/pgvector</div>
+					<div class="card-desc">Vector search is the backbone of RAG systems. Knowing how
+						to set up, query, and optimize vector stores is one of the top hiring
+						signals for LLM engineering roles in 2025.</div>
+					<div class="card-tags"><span class="ctag">Vector DB</span><span
+							class="ctag">RAG</span><span class="ctag">Embeddings</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-3">
+					<div class="card-type"><span class="type-dot dot-paid"></span> Monitoring</div>
+					<div class="card-title">Evidently AI + Arize AI (ML Monitoring)</div>
+					<div class="card-url">evidentlyai.com · arize.com</div>
+					<div class="card-desc">Model drift detection, data quality monitoring, and LLM
+						observability. Production ML fails silently without monitoring.
+						Evidently is open-source and immediately portfolio-ready.</div>
+					<div class="card-tags"><span class="ctag">Monitoring</span><span
+							class="ctag">Drift</span><span class="ctag">MLOps</span></div>
+				</div>
+
+				<div class="resource-card color-4">
+					<div class="card-type"><span class="type-dot dot-free"></span> Compute</div>
+					<div class="card-title">Google Colab Pro + Lambda Labs + RunPod</div>
+					<div class="card-url">colab.research.google.com · lambdalabs.com · runpod.io
+					</div>
+					<div class="card-desc">Colab for daily work (free T4 GPU), Lambda Labs and
+						RunPod for cheap A100 access when fine-tuning. Don't pay OpenAI bills to
+						train — rent raw GPU compute instead.</div>
+					<div class="card-tags"><span class="ctag">GPU Compute</span><span
+							class="ctag">Fine-tuning</span><span class="ctag">Budget</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<hr class="section-divider" data-label="salary table">
+
+		<!-- ═══════════════════════════════════════════
+       SALARY TABLE
+  ═══════════════════════════════════════════ -->
+		<div class="salary-section">
+			<div class="phase-header">
+				<span class="phase-number">TARGET</span>
+				<h2 class="phase-title">Highest-Paid Remote AI Roles (2025)</h2>
+				<span class="phase-tag tag-career">Career</span>
+			</div>
+
+			<div style="overflow-x:auto;">
+				<table class="salary-table">
+					<thead>
+						<tr>
+							<th>Role</th>
+							<th>Remote Salary Range</th>
+							<th>Demand</th>
+							<th>Key Skills to Target</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<div class="salary-role">AI/ML Engineer (LLM Specialist)
+								</div>
+							</td>
+							<td>
+								<div class="salary-amount">$160K – $280K</div>
+							</td>
+							<td>
+								<div class="demand-bar">
+									<div class="demand-fill" style="width:98%">
+									</div>
+								</div>
+							</td>
+							<td style="color:var(--muted);font-size:12px;">LangChain, RAG,
+								fine-tuning, prompt engineering</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="salary-role">ML Research Engineer</div>
+							</td>
+							<td>
+								<div class="salary-amount">$180K – $400K</div>
+							</td>
+							<td>
+								<div class="demand-bar">
+									<div class="demand-fill" style="width:80%">
+									</div>
+								</div>
+							</td>
+							<td style="color:var(--muted);font-size:12px;">PyTorch, paper
+								implementation, transformer internals</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="salary-role">AI Infrastructure / MLOps
+									Engineer</div>
+							</td>
+							<td>
+								<div class="salary-amount">$150K – $250K</div>
+							</td>
+							<td>
+								<div class="demand-bar">
+									<div class="demand-fill" style="width:92%">
+									</div>
+								</div>
+							</td>
+							<td style="color:var(--muted);font-size:12px;">Kubernetes,
+								Kubeflow, Docker, model serving</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="salary-role">AI Product Engineer / Applied
+									AI</div>
+							</td>
+							<td>
+								<div class="salary-amount">$140K – $220K</div>
+							</td>
+							<td>
+								<div class="demand-bar">
+									<div class="demand-fill" style="width:95%">
+									</div>
+								</div>
+							</td>
+							<td style="color:var(--muted);font-size:12px;">LLM APIs, agentic
+								systems, full-stack AI apps</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="salary-role">AI Safety / Alignment
+									Researcher</div>
+							</td>
+							<td>
+								<div class="salary-amount">$160K – $350K</div>
+							</td>
+							<td>
+								<div class="demand-bar">
+									<div class="demand-fill" style="width:70%">
+									</div>
+								</div>
+							</td>
+							<td style="color:var(--muted);font-size:12px;">Interpretability,
+								RLHF, evals, alignment theory</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="salary-role">Data Scientist → ML
+									(Transition)</div>
+							</td>
+							<td>
+								<div class="salary-amount">$110K – $175K</div>
+							</td>
+							<td>
+								<div class="demand-bar">
+									<div class="demand-fill" style="width:85%">
+									</div>
+								</div>
+							</td>
+							<td style="color:var(--muted);font-size:12px;">Stats, sklearn,
+								SQL, experimentation, A/B testing</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<hr class="section-divider" data-label="career phase">
+
+		<!-- ═══════════════════════════════════════════
+       PHASE 5 — CAREER ATTACK
+  ═══════════════════════════════════════════ -->
+		<div class="phase">
+			<div class="phase-header">
+				<span class="phase-number">PHASE 05</span>
+				<h2 class="phase-title">Portfolio, Community & Job Strategy</h2>
+				<span class="phase-tag tag-career">Career</span>
+			</div>
+
+			<div class="callout warn">
+				<div class="callout-title">📌 Credentials Don't Hire You — Projects Do</div>
+				<p>Without a degree, every application lives or dies by your GitHub and your deployed
+					projects. 3 polished, end-to-end AI projects beat a wall of certificates every
+					single time.</p>
+			</div>
+
+			<div class="resource-grid">
+
+				<div class="resource-card color-5">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-community"></span> Community
+					</div>
+					<div class="card-title">Hugging Face + Kaggle Community + Discord ML Servers
+					</div>
+					<div class="card-url">huggingface.co · kaggle.com · discord.gg/fastai</div>
+					<div class="card-desc">Community-sourced referrals are how most ML engineers
+						without degrees get hired. Contribute to HF model repos. Get a Kaggle
+						medal. Comment meaningfully in fast.ai Discord.</div>
+					<div class="card-tags"><span class="ctag">Community</span><span
+							class="ctag">Referrals</span><span
+							class="ctag">Visibility</span></div>
+				</div>
+
+				<div class="resource-card color-1">
+					<span class="priority-badge p-essential">ESSENTIAL</span>
+					<div class="card-type"><span class="type-dot dot-practice"></span> Portfolio
+						Strategy</div>
+					<div class="card-title">GitHub — ML Portfolio Projects</div>
+					<div class="card-url">github.com</div>
+					<div class="card-desc">Build: (1) end-to-end RAG chatbot with deployed demo, (2)
+						fine-tuned model on a niche dataset, (3) Kaggle competition notebook
+						with top 10% finish. Each one is a job application.</div>
+					<div class="card-tags"><span class="ctag">Portfolio</span><span
+							class="ctag">Open Source</span><span class="ctag">GitHub</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-2">
+					<div class="card-type"><span class="type-dot dot-community"></span> Writing
+					</div>
+					<div class="card-title">Towards Data Science / Substack Technical Blog</div>
+					<div class="card-url">towardsdatascience.com · substack.com</div>
+					<div class="card-desc">Write what you build. One well-written technical post on
+						implementing LoRA fine-tuning or building a RAG pipeline can generate
+						more recruiter interest than 10 applications.</div>
+					<div class="card-tags"><span class="ctag">Writing</span><span
+							class="ctag">Personal Brand</span><span
+							class="ctag">Visibility</span></div>
+				</div>
+
+				<div class="resource-card color-3">
+					<div class="card-type"><span class="type-dot dot-practice"></span> Interview
+						Prep</div>
+					<div class="card-title">ML Interview Resources — Chip Huyen's GitHub</div>
+					<div class="card-url">github.com/chiphuyen/ml-interviews-book</div>
+					<div class="card-desc">Free ML interview question bank from the author of
+						"Designing ML Systems." Covers ML theory, coding, and system design.
+						Read before every senior ML interview.</div>
+					<div class="card-tags"><span class="ctag">Interviews</span><span class="ctag">ML
+							Theory</span><span class="ctag">Free</span></div>
+				</div>
+
+				<div class="resource-card color-4">
+					<div class="card-type"><span class="type-dot dot-community"></span> Job Boards
+					</div>
+					<div class="card-title">AI-Focused Job Boards</div>
+					<div class="card-url">ycombinator.com/jobs · aijobs.net · wellfound.com</div>
+					<div class="card-desc">YC Jobs, AI Jobs Board, Wellfound (AngelList), and
+						Climatebase for AI for good. Avoid generic boards early. Startups from
+						YC S/W batch listings often hire self-taught engineers.</div>
+					<div class="card-tags"><span class="ctag">Jobs</span><span
+							class="ctag">Startups</span><span class="ctag">Remote</span>
+					</div>
+				</div>
+
+				<div class="resource-card color-5">
+					<div class="card-type"><span class="type-dot dot-paid"></span> Freelance → FT
+						Bridge</div>
+					<div class="card-title">Toptal / Contra / Upwork AI Projects</div>
+					<div class="card-url">toptal.com · contra.com · upwork.com</div>
+					<div class="card-desc">Take AI freelance projects at $75–150/hr before landing a
+						FT role. Every shipped project is portfolio proof. Toptal's vetting
+						process once passed signals seniority to employers.</div>
+					<div class="card-tags"><span class="ctag">Freelance</span><span
+							class="ctag">Income</span><span class="ctag">Experience</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<hr class="section-divider" data-label="bonus">
+
+		<!-- ═══════════════════════════════════════════
+       BONUS — CERTIFICATIONS WORTH GETTING
+  ═══════════════════════════════════════════ -->
+		<div class="phase">
+			<div class="phase-header">
+				<span class="phase-number">BONUS</span>
+				<h2 class="phase-title">Certifications Actually Worth Getting</h2>
+				<span class="phase-tag tag-foundation">Signal Boosters</span>
+			</div>
+
+			<div class="callout">
+				<div class="callout-title">Note on Certs</div>
+				<p>Certifications don't replace portfolios. They supplement. Get these only after
+					building real projects — they're hiring signals, not replacements for
+					demonstrated skill.</p>
+			</div>
+
+			<div class="resource-grid">
+
+				<div class="resource-card color-1">
+					<div class="card-type"><span class="type-dot dot-paid"></span> Certification
+					</div>
+					<div class="card-title">AWS Certified Machine Learning — Specialty</div>
+					<div class="card-url">
+						aws.amazon.com/certification/certified-machine-learning-specialty</div>
+					<div class="card-desc">The most recognized ML certification in enterprise
+						hiring. Tests end-to-end ML on AWS SageMaker. Prep with A Cloud Guru or
+						Udemy's Stephane Maarek course ($15).</div>
+					<div class="card-tags"><span class="ctag">AWS</span><span
+							class="ctag">Enterprise</span><span class="ctag">$300
+							exam</span></div>
+				</div>
+
+				<div class="resource-card color-2">
+					<div class="card-type"><span class="type-dot dot-paid"></span> Certification
+					</div>
+					<div class="card-title">Google Professional ML Engineer</div>
+					<div class="card-url">
+						cloud.google.com/learn/certification/machine-learning-engineer</div>
+					<div class="card-desc">Highly respected for GCP/Vertex AI roles. Focuses on
+						production ML system design. Often paired with the AWS cert for maximum
+						signal. Google offers $200 study credits.</div>
+					<div class="card-tags"><span class="ctag">GCP</span><span class="ctag">Vertex
+							AI</span><span class="ctag">$200 exam</span></div>
+				</div>
+
+				<div class="resource-card color-3">
+					<div class="card-type"><span class="type-dot dot-free"></span> Certification
+					</div>
+					<div class="card-title">DeepLearning.AI TensorFlow Developer + MLOps
+						Specialization</div>
+					<div class="card-url">deeplearning.ai · coursera.org</div>
+					<div class="card-desc">Andrew Ng's Coursera certificates carry genuine weight.
+						ML Specialization + Deep Learning Specialization certificates on
+						LinkedIn show structured, verifiable learning history.</div>
+					<div class="card-tags"><span class="ctag">TensorFlow</span><span
+							class="ctag">LinkedIn Signal</span><span class="ctag">Audit
+							Free</span></div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- FOOTER -->
+		<div class="footer">
+			<div class="footer-text">THE AI/ML SELF-TAUGHT MASTERY ROADMAP · BUILT FOR PRACTITIONERS · 2025
+			</div>
+			<div
+				style="margin-top:12px;font-size:11px;color:rgba(100,116,139,0.5);font-family:'Space Mono',monospace;">
+				No degree required. Only shipped projects, consistent reps, and community presence.
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
